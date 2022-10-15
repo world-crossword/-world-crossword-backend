@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/WCW
+    username: root
+    password:
+    driver-class-name: org.h2.Driver
+    # memory ?? ??
+  #      url: jdbc:h2:mem:test
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+
+google:
+  client-id: 576349839964-rbdmc9a0tsofvih0j582oldrbkp6an52.apps.googleusercontent.com
+  client-secret: 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
+  redirect-uri: http://localhost:8080/login/oauth2/code/google
