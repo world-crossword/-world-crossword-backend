@@ -4,7 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.worldcrossword.google.dto.GoogleToken;
 import com.worldcrossword.google.dto.UserInfo;
+import com.worldcrossword.member.entity.Member;
+import com.worldcrossword.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,9 +18,18 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Duration;
+
 @Service
 @RequiredArgsConstructor
 public class GoogleService {
+
+    private final RedisTemplate<String, Object> redisTemplate;
+    private final String RT_AT_PREFIX = "RT:AT:";
+    private final String AT_GG_PREFIX = "AT:GG:";
+    private final int TOKEN_CACHING_VALIDITY_DURATION = 3600 * 24 * 100;
+    private ValueOperations<String, Object> redis = redisTemplate.opsForValue();
+    private final MemberRepository memberRepository;
 
     public GoogleToken getToken(String client_id, String client_secret, String code, String redirect_uri) throws JsonProcessingException {
         HttpHeaders headers = new HttpHeaders();
@@ -50,7 +63,13 @@ public class GoogleService {
     }
 
     public void cacheToken(String accessToken, String refreshToken, String googleId) {
+        String key_RT_AT = RT_AT_PREFIX + refreshToken;
+        redis.set(key_RT_AT, accessToken);
+        redisTemplate.expire(key_RT_AT, Duration.ofSeconds(TOKEN_CACHING_VALIDITY_DURATION));
 
+        String key_AT_GG = AT_GG_PREFIX + accessToken;
+        redis.set(key_AT_GG, googleId);
+        redisTemplate.expire(key_AT_GG, Duration.ofSeconds(TOKEN_CACHING_VALIDITY_DURATION));
     }
 
     public String refreshAccessToken(String client_id, String client_secret, String refreshToken) throws JsonProcessingException {
@@ -69,5 +88,15 @@ public class GoogleService {
                 String.class);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(res.getBody(), GoogleToken.class).getAccess_token();
+    }
+
+    public Long findMemberIdByAccessToken(String token) {
+        String key_AT_GG = AT_GG_PREFIX + token.replace("Bearer ", "");
+        String googleId = (String) redis.get(key_AT_GG);
+        if(googleId == null) return null;   // 캐시에 없음 = 토큰 만료
+        Member member = memberRepository.findByGoogleId(googleId).orElseThrow(
+                // exception 추가
+        );
+        return member.getId();
     }
 }
