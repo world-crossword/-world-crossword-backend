@@ -4,7 +4,7 @@ spring:
     username: root
     password:
     driver-class-name: org.h2.Driver
-    # memory ?? ??
+    # memory mode
   #      url: jdbc:h2:mem:test
 
   jpa:
@@ -15,6 +15,10 @@ spring:
         show_sql: true
         format_sql: true
         default_batch_fetch_size: 100
+
+  redis:
+    host: localhost
+    port: 6379
 
 google:
   client-id: 576349839964-rbdmc9a0tsofvih0j582oldrbkp6an52.apps.googleusercontent.com
