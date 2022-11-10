@@ -22,6 +22,7 @@ wordList = {
     'word': [],
     'row': [],
     'col': [],
+    'endpoint': [],
     'direction': [],
     'completion': []
 }
@@ -213,6 +214,8 @@ class Grid:
             wordList['col'].append(c)
             wordList['direction'].append(d)
             wordList['completion'].append(0)
+            wl = len(word)
+            wordList['endpoint'].append(r + wl - 1 if d == Direction.DOWN else c + wl - 1)
             return(None)
         for d, r, c in itertools.product(list(Direction), range(self.num_rows), range(self.num_cols)):
             if self.__word_fits(word, r, c, d):
@@ -224,30 +227,13 @@ class Grid:
                 wordList['col'].append(c)
                 wordList['direction'].append(d)
                 wordList['completion'].append(0)
+                wl = len(word)
+                wordList['endpoint'].append(r + wl - 1 if d == Direction.DOWN else c + wl - 1)
                 break
 
     def scan_and_insert_all_words(self, words):
         for word in words:
             self.__scan_and_insert_word(word)
-
-
-    def __randomly_insert_word(self, word):
-        if not isinstance(word, str):
-            raise TypeError("Only strings can be randomly inserted into the puzzle")
-        if len(self.grid_words) == 0:
-            self.__insert_word(GridWord(word, *self.__approximate_center(), Direction.random()))
-            return(None)
-        num_iterations = 0
-        while num_iterations <= 10000:
-            rand_r = random.randint(0, self.num_rows - 1)
-            rand_c = random.randint(0, self.num_cols - 1)
-            d = Direction.random()
-            if self.__word_fits(word, rand_r, rand_c, d):
-                grid_word = GridWord(word, rand_r, rand_c, d)
-                self.__insert_word(grid_word)
-                break
-            num_iterations += 1
-
 
     def crop(self):
         cropped_grid = Grid(50, 50)
