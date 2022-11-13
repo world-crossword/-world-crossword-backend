@@ -256,8 +256,8 @@ print(g.crop())
 print(wordList)
 
 dataList = pd.DataFrame(data=wordList)
-dataList.to_csv(sys.argv[1] + '.csv')
+dataList.to_csv("../src/main/resources/puzzleData/" + sys.argv[1] + '.csv')
 
-save = open(sys.argv[1] + '.txt', 'w')
+save = open("../src/main/resources/puzzleData/" + sys.argv[1] + '.txt', 'w')
 save.write(str(g.crop()))
 save.close()
