@@ -6,7 +6,9 @@ import com.worldcrossword.google.dto.GoogleToken;
 import com.worldcrossword.google.dto.UserInfo;
 import com.worldcrossword.member.entity.Member;
 import com.worldcrossword.member.repository.MemberRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.HttpEntity;
@@ -23,13 +25,15 @@ import java.time.Duration;
 @Service
 @RequiredArgsConstructor
 public class GoogleService {
-
     private final RedisTemplate<String, Object> redisTemplate;
+    private final MemberRepository memberRepository;
+    private final ValueOperations<String, Object> redis;
     private final String RT_AT_PREFIX = "RT:AT:";
     private final String AT_GG_PREFIX = "AT:GG:";
     private final int TOKEN_CACHING_VALIDITY_DURATION = 3600 * 24 * 100;
-    private ValueOperations<String, Object> redis = redisTemplate.opsForValue();
-    private final MemberRepository memberRepository;
+
+
+
 
     public GoogleToken getToken(String client_id, String client_secret, String code, String redirect_uri) throws JsonProcessingException {
         HttpHeaders headers = new HttpHeaders();

@@ -11,7 +11,6 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 public class MemberRepository {
-
     private final EntityManager em;
 
     public void save(Member member) {

@@ -7,14 +7,16 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name="username", nullable = false)
     private String username;
+    @Column(name="google_id")
     private String googleId;
+    @Column(name="role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
-
+    @Column(name="score", nullable = false)
     private Long score;
 
     @Builder
