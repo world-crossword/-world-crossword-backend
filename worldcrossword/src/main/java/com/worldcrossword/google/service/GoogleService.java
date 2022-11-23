@@ -31,9 +31,9 @@ public class GoogleService {
     private final String RT_AT_PREFIX = "RT:AT:";
     private final String AT_GG_PREFIX = "AT:GG:";
     private final int TOKEN_CACHING_VALIDITY_DURATION = 3600 * 24 * 100;
-    private ValueOperations<String, Object> redis;
-//    private ValueOperations<String, Object> redis = redisTemplate.opsForValue();
-    private final MemberRepository memberRepository;
+
+
+
 
     public GoogleToken getToken(String client_id, String client_secret, String code, String redirect_uri) throws JsonProcessingException {
         HttpHeaders headers = new HttpHeaders();
@@ -67,7 +67,6 @@ public class GoogleService {
     }
 
     public void cacheToken(String accessToken, String refreshToken, String googleId) {
-        redis = redisTemplate.opsForValue();
         String key_RT_AT = RT_AT_PREFIX + refreshToken;
         redis.set(key_RT_AT, accessToken);
         redisTemplate.expire(key_RT_AT, Duration.ofSeconds(TOKEN_CACHING_VALIDITY_DURATION));
@@ -96,7 +95,6 @@ public class GoogleService {
     }
 
     public Long findMemberIdByAccessToken(String token) {
-        redis = redisTemplate.opsForValue();
         String key_AT_GG = AT_GG_PREFIX + token.replace("Bearer ", "");
         String googleId = (String) redis.get(key_AT_GG);
         if(googleId == null) return null;   // 캐시에 없음 = 토큰 만료
