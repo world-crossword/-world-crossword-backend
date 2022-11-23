@@ -8,24 +8,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 
 @Service
 @Slf4j
 public class PuzzleSessionServiceImpl implements PuzzleSessionService {
 
-    private String pyPath(){
-        String puzzleName = "./puzzleGeneration/main.py";
-        File file = new File(puzzleName);
-        return file.getAbsolutePath();
-    }
     @Override
     public ResponseEntity<HttpEntity> generatePuzzle(String puzzleName) {
-        log.info(pyPath());
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python", pyPath(), puzzleName);
+            String[] cmd = new String[] {"main.exe", puzzleName};
+            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
             processBuilder.redirectErrorStream(true);
+            processBuilder.directory(new File("puzzleGeneration"));
             Process process = processBuilder.start();
+
             int exitCode = process.waitFor();
 
             if(exitCode == 0) return new ResponseEntity<>(HttpStatus.OK);

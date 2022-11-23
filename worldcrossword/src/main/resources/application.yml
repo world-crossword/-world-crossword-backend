@@ -4,8 +4,8 @@ spring:
     username: root
     password:
     driver-class-name: org.h2.Driver
-    # memory mode
-  #      url: jdbc:h2:mem:test
+#    memory mode
+#      url: jdbc:h2:mem:test
 
   jpa:
     hibernate:
