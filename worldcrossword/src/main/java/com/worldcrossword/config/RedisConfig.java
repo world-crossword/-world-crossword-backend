@@ -41,9 +41,4 @@ public class RedisConfig {
 
         return redisTemplate;
     }
-
-    @Bean
-    public ValueOperations<String, Object> redisOperation(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForValue();
-    }
 }
