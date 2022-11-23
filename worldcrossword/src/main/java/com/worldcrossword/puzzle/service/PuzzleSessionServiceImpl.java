@@ -20,6 +20,8 @@ public class PuzzleSessionServiceImpl implements PuzzleSessionService {
     public ResponseEntity<HttpEntity> generatePuzzle(String puzzleName) {
         try {
             String[] cmd = new String[] {"main.exe", puzzleName};
+            //리눅스 환경에서는 아래 코드로 변경 필요
+            //[] cmd = new String[] {"./main.exe", puzzleName};
             ProcessBuilder processBuilder = new ProcessBuilder(cmd);
             processBuilder.redirectErrorStream(true);
             processBuilder.directory(new File("puzzleGeneration"));
