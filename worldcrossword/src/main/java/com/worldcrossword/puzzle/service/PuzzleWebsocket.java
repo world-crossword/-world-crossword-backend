@@ -52,16 +52,19 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
     private static final ConcurrentHashMap<String, WebSocketSession> CLIENTS = new ConcurrentHashMap<String, WebSocketSession>();
 
     // 접속한 유저 관리
-    private final List<User> users = new ArrayList<>();
+    private final ArrayList<User> users = new ArrayList<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        // 최초 등록 과정
         CLIENTS.put(session.getId(), session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         CLIENTS.remove(session.getId());
+        // 세션 ID가 동일한 유저를 제거함.
+        users.remove(users.stream().filter(i -> i.getSessionId() == session.getId()).findFirst().get());
     }
 
     @Override
@@ -72,8 +75,13 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
         // session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat(false).build())));
         // 유저한테 메시지 다시 보내는 예시. SessionRequestResDto를 JSON으로 파싱 후 보낸다.
 
+        // 유저가 처음 들어왔을때, 등록하는 과정 -> 반드시 필요함!! 이거 끝나면 페이지 로딩 되도록 해야함.
         if(parsed.get("task").equals("auth")) {
-
+            String googleId = (String) parsed.get("googleId");
+            String sessionName = (String) parsed.get("sessionName");
+            // 등록 과정에서는 보낼때 googleId와 현재 존재하는 sessionName을 보내야 한다.
+            // 이후 Users에 추가한다.
+            users.add(User.builder().sessionId(session.getId()).googldId(googleId).sessionName(sessionName).build());
         }
     }
 }
