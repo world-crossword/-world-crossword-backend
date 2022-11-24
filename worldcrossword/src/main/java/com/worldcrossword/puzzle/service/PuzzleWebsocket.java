@@ -7,6 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.worldcrossword.puzzle.dto.SessionRequestResDto;
+import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
+import com.worldcrossword.puzzle.repository.PuzzleSessionRepository;
+import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -54,6 +57,14 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
     // 접속한 유저 관리
     private final ArrayList<User> users = new ArrayList<>();
 
+    // 생성된 퍼즐 세션 체크용.
+    @Autowired
+    PuzzleSessionRepository puzzleSessionRepository;
+    
+    // 퍼즐 생성용 코드
+    @Autowired
+    PuzzleService puzzleService;
+
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         // 최초 등록 과정
@@ -64,7 +75,7 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         CLIENTS.remove(session.getId());
         // 세션 ID가 동일한 유저를 제거함.
-        users.remove(users.stream().filter(i -> i.getSessionId() == session.getId()).findFirst().get());
+        users.remove(users.stream().filter(i -> i.getSessionId() == session.getId()).findFirst().orElse(null));
     }
 
     @Override
@@ -82,6 +93,28 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
             // 등록 과정에서는 보낼때 googleId와 현재 존재하는 sessionName을 보내야 한다.
             // 이후 Users에 추가한다.
             users.add(User.builder().sessionId(session.getId()).googldId(googleId).sessionName(sessionName).build());
+            session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat(true).message("세션 연결됨").build())));
+            return;
+        }
+
+        // 게임 가져오기 - 없으면 생성됨.
+        // 보낼때 task에 getmap, sessionName에 필요한 세션 이름 보내줘야함.
+        else if(parsed.get("task").equals("getmap")) {
+            Optional<PuzzleSessionEntity> puzzle = puzzleSessionRepository.findBySessionName((String) parsed.get("sessionName"));
+            if(!puzzle.isPresent()) {
+                // 퍼즐 생성 요청
+                session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat(false).message("퍼즐 생성중").sessionName((String) parsed.get("sessionName")).build())));
+                puzzleService.generatePuzzle((String) parsed.get("sessionName"));
+            } 
+            // 퍼즐 생성 요청은 갔으나 아직 생성중인 경우
+            else if (puzzle.get().getComplete() == false) {
+                session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat(false).message("퍼즐 생성중").sessionName((String) parsed.get("sessionName")).build())));
+            }
+            // 퍼즐이 있을 경우
+            else {
+                session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat(true).message("퍼즐을 보냅니다").sessionName((String) parsed.get("sessionName")).build())));
+                // Front에 퍼즐을 보내줘야함.
+            }
         }
     }
 }

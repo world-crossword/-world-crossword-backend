@@ -248,10 +248,10 @@ class Grid:
 random.seed(1)
 g = Grid()
 g.scan_and_insert_all_words(words)
-print(g.crop())
-print(wordList)
+
 dataList = pd.DataFrame(data=wordList)
 dataList.to_csv("../src/main/resources/puzzleData/" + sys.argv[1] + '.csv')
 save = open("../src/main/resources/puzzleData/" + sys.argv[1] + '.txt', 'w')
+
 save.write(str(g.crop()))
 save.close()
