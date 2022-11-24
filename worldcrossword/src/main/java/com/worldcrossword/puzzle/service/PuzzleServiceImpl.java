@@ -50,6 +50,11 @@ public class PuzzleServiceImpl implements PuzzleService {
                 puzzle.completeGenerate();
                 puzzleSessionRepository.save(puzzle);
                 // 퍼즐 세션 추가
+                /**
+                 * 여기에 csv 읽어서 Puzzlerepository 통해서 PuzzleEntity 저장하도록 하는 코드 작성 부탁드립니다
+                 *  PuzzleEntity는 만들어 뒀구요, sessionName 항목에는 본 함수의 parameter인 puzzleName을 집어 넣으시면 됩니다.
+                 *  퍼즐별로 문항을 쿼리하기 위해 만든 겁니다.
+                 */
                 return true;
             }
             else return false;
