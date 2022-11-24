@@ -16,5 +16,6 @@ public class PuzzleSessionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "session_name", unique = true, nullable = false)
     private String sessionName;
 }
