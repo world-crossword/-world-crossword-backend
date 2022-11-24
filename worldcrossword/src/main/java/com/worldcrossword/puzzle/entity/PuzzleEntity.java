@@ -15,17 +15,16 @@ import javax.persistence.*;
 public class PuzzleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column
     private String word;
 
     @Column
-    private Long row;
+    private Long rowpoint;
 
     @Column
-    private Long col;
+    private Long colpoint;
 
     @Column
     private Long endpoint;

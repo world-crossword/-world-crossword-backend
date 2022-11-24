@@ -1,17 +1,21 @@
 package com.worldcrossword.puzzle.service;
 
+import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
+import com.worldcrossword.puzzle.repository.PuzzleRepository;
 import com.worldcrossword.puzzle.repository.PuzzleSessionRepository;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @EnableAsync
@@ -20,6 +24,9 @@ public class PuzzleServiceImpl implements PuzzleService {
 
     @Autowired
     PuzzleSessionRepository puzzleSessionRepository;
+
+    @Autowired
+    PuzzleRepository puzzleRepository;
 
     @Override
     @Async
@@ -50,11 +57,42 @@ public class PuzzleServiceImpl implements PuzzleService {
                 puzzle.completeGenerate();
                 puzzleSessionRepository.save(puzzle);
                 // 퍼즐 세션 추가
-                /**
-                 * 여기에 csv 읽어서 Puzzlerepository 통해서 PuzzleEntity 저장하도록 하는 코드 작성 부탁드립니다
-                 *  PuzzleEntity는 만들어 뒀구요, sessionName 항목에는 본 함수의 parameter인 puzzleName을 집어 넣으시면 됩니다.
-                 *  퍼즐별로 문항을 쿼리하기 위해 만든 겁니다.
-                 */
+                ClassPathResource resource = new ClassPathResource("puzzleData/"+puzzleName+".csv");
+                File csv = resource.getFile();
+                BufferedReader br = null;
+                String line = "";
+
+                try {
+                    br = new BufferedReader(new FileReader(csv));
+                    while ((line = br.readLine()) != null) { // readLine()은 파일에서 개행된 한 줄의 데이터를 읽어온다.
+                        String[] lineArr = line.split(","); // 파일의 한 줄을 ,로 나누어 배열에 저장 후 리스트로 변환한다.
+                        if(lineArr[2].equals("row")) continue;
+                        PuzzleEntity singleword = PuzzleEntity.builder()
+                                .word(lineArr[1])
+                                .rowpoint(Long.parseLong(lineArr[2]))
+                                .colpoint(Long.parseLong(lineArr[3]))
+                                .endpoint(Long.parseLong(lineArr[4]))
+                                .direction(lineArr[5])
+                                .completion(Long.parseLong(lineArr[6]))
+                                .sessionName(puzzleName)
+                                .build();
+                        log.info(singleword.toString());
+                        puzzleRepository.save(singleword);
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (br != null) {
+                            br.close(); // 사용 후 BufferedReader를 닫아준다.
+                        }
+                    } catch(IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 return true;
             }
             else return false;
@@ -62,4 +100,12 @@ public class PuzzleServiceImpl implements PuzzleService {
             return false;
         }
     }
+
+    @Override
+    public List<PuzzleEntity> getPuzzle(String puzzleName) {
+        List<PuzzleEntity> puzzles = puzzleRepository.findAllBySessionName(puzzleName);
+        return puzzles;
+    }
+
+
 }
