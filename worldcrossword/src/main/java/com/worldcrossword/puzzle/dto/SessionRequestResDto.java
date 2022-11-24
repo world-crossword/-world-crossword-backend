@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class SessionRequestResDto {
     private Boolean stat;
     private String sessionName;
