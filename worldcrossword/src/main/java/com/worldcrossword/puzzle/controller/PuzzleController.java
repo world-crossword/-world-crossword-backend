@@ -1,5 +1,6 @@
 package com.worldcrossword.puzzle.controller;
 
+import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,15 @@ public class PuzzleController {
     @GetMapping("/get/{sessionName}")
     public ResponseEntity<List<PuzzleEntity>> getPuzzle(@PathVariable String sessionName) {
         return new ResponseEntity<>(puzzleService.getPuzzle(sessionName), HttpStatus.OK);
+    }
+
+    @GetMapping("/mean/{word}")
+    public ResponseEntity<DictionaryEntity> getWord(@PathVariable String word) {
+        try {
+            return new ResponseEntity<>(puzzleService.getWord(word), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 

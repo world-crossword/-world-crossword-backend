@@ -113,7 +113,7 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
                 puzzleService.generatePuzzle((String) parsed.get("sessionName"));
             } 
             // 퍼즐 생성 요청은 갔으나 아직 생성중인 경우
-            else if (puzzle.get().getComplete() == false) {
+            else if (!puzzle.get().getComplete()) {
                 session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("false").message("퍼즐 생성중").sessionName((String) parsed.get("sessionName")).build())));
             }
             // 퍼즐이 있을 경우
