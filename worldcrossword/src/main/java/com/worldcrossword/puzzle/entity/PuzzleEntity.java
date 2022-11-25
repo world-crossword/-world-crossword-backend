@@ -37,4 +37,8 @@ public class PuzzleEntity {
 
     @Column
     private String sessionName;
+
+    public void successPuzzle() {
+        this.completion = 1L;
+    }
 }

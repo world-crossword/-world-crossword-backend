@@ -171,10 +171,63 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
             user.changeSolve(true, puzzle.getWord());
             userRepository.save(user);
 
+            // 퍼즐 푼다고 요청한 사람에게 퍼즐의 정답을 제공함. -> 퍼즐의 정답 여부는 프론트엔드에서 확인.
+            session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("true").word(puzzle.getWord()).build())));
+
             for(WebSocketSession s: CLIENTS) {
-                // 나 자신이 아니고, 현재 접속중인 유저 중 하나이면서, 퍼즐 세션이 일치하는 유저들에게 solving task로 다른사람이 푸는 문제를 전파.
+                // 나 자신이 아니고, 현재 접속중인 유저 중 하나이면서, 퍼즐 세션이 일치하는 유저들에게 solving task로 다른사람이 푸는 문제를 전파. - 현재 풀고있는 단어와 푸는 사람의 아이디가 포함됨.
                 if (!s.getId().equals(session.getId()) && userRepository.findBySessionId(s.getId()).isPresent() && userRepository.findBySessionId(s.getId()).get().getSessionName().equals((String) parsed.get("sessionName"))) {
-                    session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("solving").word(puzzle.getWord()).build())));
+                    session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("solving").word(puzzle.getWord()).message(user.getGoogldId()).build())));
+                }
+            }
+        }
+
+        // 퍼즐 풀이 그만둘때 - 위와 나머지는 동일한데, success에 "true" 혹은 "false"를 보내 성공 여부 보내줌
+        else if (parsed.get("task").equals("releasePuzzle")) {
+            UserEntity user = userRepository.findBySessionId(session.getId()).orElseThrow();
+            Long row = Long.parseLong((String) parsed.get("row"));
+            Long col = Long.parseLong((String) parsed.get("col"));
+            String direction = (String) parsed.get("direction");
+            String success = (String) parsed.get("success");
+            List<PuzzleEntity> puzzles = puzzleRepository.findAllBySessionName((String) parsed.get("sessionName"));
+
+            // 현재 그만두려는 퍼즐을 찾음.
+            PuzzleEntity puzzle = null;
+            for(PuzzleEntity p: puzzles) {
+                if(Objects.equals(direction, "ACROSS")) {
+                    if(p.getColpoint() <= col && p.getColpoint() + p.getEndpoint() > col && Objects.equals(p.getRowpoint(), row)) {
+                        puzzle = p;
+                        break;
+                    }
+                } else {
+                    if(p.getRowpoint() <= row && p.getRowpoint() + p.getEndpoint() > row && Objects.equals(p.getColpoint(), col)) {
+                        puzzle = p;
+                        break;
+                    }
+                }
+            }
+            if(puzzle == null) {
+                session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("false").message("찾는 퍼즐이 없습니다.").sessionName((String) parsed.get("sessionName")).build())));
+                return;
+            }
+
+            // 풀이 그만둠 저장.
+            user.changeSolve(false, null);
+            userRepository.save(user);
+
+            // 풀이 성공했을시 puzzle 성공 체크 및 저장.
+            if(success.equals("true")) {
+                puzzle.successPuzzle();
+                puzzleRepository.save(puzzle);
+            }
+
+            // 퍼즐 그만두기를 요청한 사람에게 처리가 끝났음을 알림
+            session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("true").message("처리 완료").build())));
+
+            for(WebSocketSession s: CLIENTS) {
+                // 나 자신이 아니고, 현재 접속중인 유저 중 하나이면서, 퍼즐 세션이 일치하는 유저들에게 not_solving task로 풀이 끝났음을 알림
+                if (!s.getId().equals(session.getId()) && userRepository.findBySessionId(s.getId()).isPresent() && userRepository.findBySessionId(s.getId()).get().getSessionName().equals((String) parsed.get("sessionName"))) {
+                    session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("not_solving").word(puzzle.getWord()).build())));
                 }
             }
         }

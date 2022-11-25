@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 @ToString
 public class SessionRequestResDto {
-    // true, false, solving
+    // true, false, solving, not_solving
     private String stat;
     private String sessionName;
     private String message;
