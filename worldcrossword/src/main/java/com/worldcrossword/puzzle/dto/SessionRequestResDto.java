@@ -9,8 +9,10 @@ import lombok.*;
 @Builder
 @ToString
 public class SessionRequestResDto {
-    private Boolean stat;
+    // true, false, solving
+    private String stat;
     private String sessionName;
     private String message;
-    private String puzzle;
+
+    private String word;
 }

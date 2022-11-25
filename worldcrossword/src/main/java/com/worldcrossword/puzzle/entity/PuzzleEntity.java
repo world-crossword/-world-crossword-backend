@@ -37,6 +37,4 @@ public class PuzzleEntity {
 
     @Column
     private String sessionName;
-
-
 }
