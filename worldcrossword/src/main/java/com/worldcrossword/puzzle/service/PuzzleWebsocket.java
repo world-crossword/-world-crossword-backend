@@ -6,7 +6,6 @@ package com.worldcrossword.puzzle.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.worldcrossword.puzzle.dto.PuzzleRequest;
 import com.worldcrossword.puzzle.dto.SessionRequestResDto;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
@@ -25,7 +24,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 @Slf4j

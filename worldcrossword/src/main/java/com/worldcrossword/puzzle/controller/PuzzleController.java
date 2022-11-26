@@ -1,5 +1,7 @@
 package com.worldcrossword.puzzle.controller;
 
+import com.worldcrossword.puzzle.dto.PuzzleRequest;
+import com.worldcrossword.puzzle.dto.SessionRequestResDto;
 import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
@@ -21,8 +23,8 @@ public class PuzzleController {
     PuzzleService puzzleService;
 
     @GetMapping("/get/{sessionName}")
-    public ResponseEntity<List<PuzzleEntity>> getPuzzle(@PathVariable String sessionName) {
-        return new ResponseEntity<>(puzzleService.getPuzzle(sessionName), HttpStatus.OK);
+    public ResponseEntity<PuzzleRequest> getPuzzle(@PathVariable String sessionName) {
+        return new ResponseEntity<>(PuzzleRequest.builder().puzzle(puzzleService.getPuzzle(sessionName)).user(puzzleService.getUsers(sessionName)).build(), HttpStatus.OK);
     }
 
     @GetMapping("/mean/{word}")
