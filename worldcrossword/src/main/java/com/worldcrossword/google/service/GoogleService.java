@@ -6,9 +6,7 @@ import com.worldcrossword.google.dto.GoogleToken;
 import com.worldcrossword.google.dto.UserInfo;
 import com.worldcrossword.member.entity.Member;
 import com.worldcrossword.member.repository.MemberRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.HttpEntity;
@@ -30,10 +28,7 @@ public class GoogleService {
     private ValueOperations<String, Object> redis;
     private final String RT_AT_PREFIX = "RT:AT:";
     private final String AT_GG_PREFIX = "AT:GG:";
-    private final int TOKEN_CACHING_VALIDITY_DURATION = 3600 * 24 * 100;
-
-
-
+    private final int TOKEN_CACHING_VALIDITY_DURATION = 3600 * 24 * 100;    // 100일동안 캐싱
 
 
     public GoogleToken getToken(String client_id, String client_secret, String code, String redirect_uri) throws JsonProcessingException {
@@ -78,6 +73,19 @@ public class GoogleService {
         redisTemplate.expire(key_AT_GG, Duration.ofSeconds(TOKEN_CACHING_VALIDITY_DURATION));
     }
 
+    public String getAccessTokenFromCache(String refreshToken) {
+        redis = redisTemplate.opsForValue();
+        String key = RT_AT_PREFIX + refreshToken;
+        String accessToken = (String) redis.get(key);
+        return accessToken;
+    }
+
+    public boolean validateToken(String refreshToken) {
+        redis = redisTemplate.opsForValue();
+        String key = RT_AT_PREFIX + refreshToken;
+        return redis.get(key) != null;
+    }
+
     public String refreshAccessToken(String client_id, String client_secret, String refreshToken) throws JsonProcessingException {
         RestTemplate req = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -100,9 +108,9 @@ public class GoogleService {
         redis = redisTemplate.opsForValue();
         String key_AT_GG = AT_GG_PREFIX + token.replace("Bearer ", "");
         String googleId = (String) redis.get(key_AT_GG);
-        if(googleId == null) return null;   // 캐시에 없음 = 토큰 만료
+        if(googleId == null) throw new RuntimeException("만료된 토큰입니다.");
         Member member = memberRepository.findByGoogleId(googleId).orElseThrow(
-                // exception 추가
+                () -> new RuntimeException("존재하지 않는 회원입니다.")
         );
         return member.getId();
     }

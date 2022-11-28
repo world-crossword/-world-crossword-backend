@@ -9,6 +9,7 @@ import com.worldcrossword.puzzle.repository.PuzzleRepository;
 import com.worldcrossword.puzzle.repository.PuzzleSessionRepository;
 import com.worldcrossword.puzzle.repository.UserRepository;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -20,21 +21,15 @@ import java.io.*;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @EnableAsync
 @Slf4j
 public class PuzzleServiceImpl implements PuzzleService {
 
-    @Autowired
-    PuzzleSessionRepository puzzleSessionRepository;
-
-    @Autowired
-    DictionaryRepository dictionaryRepository;
-
-    @Autowired
-    PuzzleRepository puzzleRepository;
-
-    @Autowired
-    UserRepository userRepository;
+    private final PuzzleSessionRepository puzzleSessionRepository;
+    private final DictionaryRepository dictionaryRepository;
+    private final PuzzleRepository puzzleRepository;
+    private final UserRepository userRepository;
 
     @Override
     @Async
@@ -67,11 +62,9 @@ public class PuzzleServiceImpl implements PuzzleService {
                 // 퍼즐 세션 추가
                 ClassPathResource resource = new ClassPathResource("puzzleData/"+puzzleName+".csv");
                 File csv = resource.getFile();
-                BufferedReader br = null;
                 String line = "";
 
-                try {
-                    br = new BufferedReader(new FileReader(csv));
+                try(BufferedReader br = new BufferedReader(new FileReader(csv))) {
                     while ((line = br.readLine()) != null) { // readLine()은 파일에서 개행된 한 줄의 데이터를 읽어온다.
                         String[] lineArr = line.split(","); // 파일의 한 줄을 ,로 나누어 배열에 저장 후 리스트로 변환한다.
                         if(lineArr[2].equals("row")) continue;
@@ -87,20 +80,9 @@ public class PuzzleServiceImpl implements PuzzleService {
                         log.info(singleword.toString());
                         puzzleRepository.save(singleword);
                     }
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
-                    try {
-                        if (br != null) {
-                            br.close(); // 사용 후 BufferedReader를 닫아준다.
-                        }
-                    } catch(IOException e) {
-                        e.printStackTrace();
-                    }
                 }
-
                 return true;
             }
             else return false;

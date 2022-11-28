@@ -14,6 +14,7 @@ import com.worldcrossword.puzzle.repository.PuzzleRepository;
 import com.worldcrossword.puzzle.repository.PuzzleSessionRepository;
 import com.worldcrossword.puzzle.repository.UserRepository;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,18 +27,16 @@ import java.io.IOException;
 import java.util.*;
 
 @Component
+@RequiredArgsConstructor
 @Slf4j
 public class PuzzleWebsocket extends TextWebSocketHandler {
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     // 접속한 유저 관리
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private PuzzleRepository puzzleRepository;
+    private final PuzzleRepository puzzleRepository;
 
     public String objToJson(SessionRequestResDto obj) {
 
@@ -62,12 +61,10 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
     private final List<WebSocketSession> CLIENTS = new ArrayList<>();
 
     // 생성된 퍼즐 세션 체크용.
-    @Autowired
-    PuzzleSessionRepository puzzleSessionRepository;
+    private final PuzzleSessionRepository puzzleSessionRepository;
     
     // 퍼즐 생성용 코드
-    @Autowired
-    PuzzleService puzzleService;
+    private final PuzzleService puzzleService;
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -96,7 +93,7 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
             String sessionName = (String) parsed.get("sessionName");
             // 등록 과정에서는 보낼때 googleId와 현재 존재하는 sessionName을 보내야 한다.
             // 이후 Users에 추가한다.
-            userRepository.save(UserEntity.builder().sessionId(session.getId()).googldId(googleId).sessionName(sessionName).solving(false).build());
+            userRepository.save(UserEntity.builder().sessionId(session.getId()).googleId(googleId).sessionName(sessionName).solving(false).build());
             session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("true").message("세션 연결됨").build())));
             return;
         }
@@ -175,7 +172,7 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
             for(WebSocketSession s: CLIENTS) {
                 // 나 자신이 아니고, 현재 접속중인 유저 중 하나이면서, 퍼즐 세션이 일치하는 유저들에게 solving task로 다른사람이 푸는 문제를 전파. - 현재 풀고있는 단어와 푸는 사람의 아이디가 포함됨.
                 if (!s.getId().equals(session.getId()) && userRepository.findBySessionId(s.getId()).isPresent() && userRepository.findBySessionId(s.getId()).get().getSessionName().equals((String) parsed.get("sessionName"))) {
-                    session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("solving").word(puzzle.getWord()).message(user.getGoogldId()).build())));
+                    session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("solving").word(puzzle.getWord()).message(user.getGoogleId()).build())));
                 }
             }
         }

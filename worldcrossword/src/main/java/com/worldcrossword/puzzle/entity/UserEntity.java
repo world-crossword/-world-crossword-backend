@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,7 +25,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String sessionId;
     @Column(nullable = false)
-    private String googldId;
+    private String googleId;
     @Column(nullable = false)
     private String sessionName;
 
