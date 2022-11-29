@@ -4,6 +4,7 @@ import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
 import com.worldcrossword.puzzle.entity.UserEntity;
+import com.worldcrossword.puzzle.exception.NoEntityException;
 import com.worldcrossword.puzzle.repository.DictionaryRepository;
 import com.worldcrossword.puzzle.repository.PuzzleRepository;
 import com.worldcrossword.puzzle.repository.PuzzleSessionRepository;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -94,18 +96,27 @@ public class PuzzleServiceImpl implements PuzzleService {
     @Override
     public List<PuzzleEntity> getPuzzle(String puzzleName) {
         List<PuzzleEntity> puzzles = puzzleRepository.findAllBySessionName(puzzleName);
+        if(puzzles.size() == 0) {
+            throw new NoEntityException("해당하는 퍼즐이 없습니다.");
+        }
         return puzzles;
     }
 
     @Override
     public DictionaryEntity getWord(String word) {
-        DictionaryEntity ans = dictionaryRepository.findByEnglish(word).orElseThrow();
-        return ans;
+        Optional<DictionaryEntity> ans = dictionaryRepository.findByEnglish(word);
+        if(ans.isEmpty()) {
+            throw new NoEntityException("해당하는 단어가 없습니다.");
+        }
+        return ans.get();
     }
 
     @Override
     public List<UserEntity> getUsers(String sessionName) {
         List<UserEntity> users = userRepository.findBySessionName(sessionName);
+        if(users.size() == 0) {
+            throw new NoEntityException("해당하는 유저가 없습니다.");
+        }
         return users;
     }
 
