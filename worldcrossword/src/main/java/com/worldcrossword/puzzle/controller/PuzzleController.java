@@ -20,7 +20,7 @@ public class PuzzleController {
     @Autowired
     PuzzleService puzzleService;
 
-    @GetMapping("/get/{sessionName}")
+    @GetMapping("/{sessionName}")
     public ResponseEntity<List<PuzzleEntity>> getPuzzle(@PathVariable String sessionName) {
         return new ResponseEntity<>(puzzleService.getPuzzle(sessionName), HttpStatus.OK);
     }
