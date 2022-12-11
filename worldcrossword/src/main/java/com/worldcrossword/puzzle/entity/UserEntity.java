@@ -12,6 +12,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 public class UserEntity {
+
+    /**
+     * 항상 저장되어 있는 Member와는 달리, 이 Table은 게임에 참여할때만 Row에 존재합니다.
+     */
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

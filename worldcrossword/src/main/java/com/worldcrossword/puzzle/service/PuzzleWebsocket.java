@@ -6,7 +6,6 @@ package com.worldcrossword.puzzle.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.worldcrossword.puzzle.dto.PuzzleRequest;
 import com.worldcrossword.puzzle.dto.SessionRequestResDto;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
@@ -25,7 +24,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 @Slf4j
@@ -123,7 +121,7 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
             }
         }
         
-        // 유저 퍼즐 세션 변경 -> 기존 세션에서 변경시 퍼즐 받아오는 REST API 실행 전에 보내줘야함 // task는 changePuzzle , sessionName은 퍼즐 이름.
+        // 유저 퍼즐 세션 변경 -> 기존 세션에서 변경시, 퍼즐 받아오는 REST API 실행 전에 보내줘야함 // task는 changePuzzle , sessionName은 퍼즐 이름.
         else if(parsed.get("task").equals("changePuzzle")) {
             if(puzzleSessionRepository.findBySessionName((String) parsed.get("sessionName")).isEmpty() || !puzzleSessionRepository.findBySessionName((String) parsed.get("sessionName")).get().getComplete()) {
                 session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("false").message("찾는 퍼즐이 없습니다.").sessionName((String) parsed.get("sessionName")).build())));

@@ -3,23 +3,21 @@ package com.worldcrossword.puzzle.service;
 import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
+import com.worldcrossword.puzzle.entity.UserEntity;
 import com.worldcrossword.puzzle.repository.DictionaryRepository;
 import com.worldcrossword.puzzle.repository.PuzzleRepository;
 import com.worldcrossword.puzzle.repository.PuzzleSessionRepository;
+import com.worldcrossword.puzzle.repository.UserRepository;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @EnableAsync
@@ -34,6 +32,9 @@ public class PuzzleServiceImpl implements PuzzleService {
 
     @Autowired
     PuzzleRepository puzzleRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     @Async
@@ -118,6 +119,12 @@ public class PuzzleServiceImpl implements PuzzleService {
     public DictionaryEntity getWord(String word) {
         DictionaryEntity ans = dictionaryRepository.findByEnglish(word).orElseThrow();
         return ans;
+    }
+
+    @Override
+    public List<UserEntity> getUsers(String sessionName) {
+        List<UserEntity> users = userRepository.findBySessionName(sessionName);
+        return users;
     }
 
 

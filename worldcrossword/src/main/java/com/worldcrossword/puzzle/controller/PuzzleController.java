@@ -1,5 +1,7 @@
 package com.worldcrossword.puzzle.controller;
 
+import com.worldcrossword.puzzle.dto.PuzzleRequest;
+import com.worldcrossword.puzzle.dto.SessionRequestResDto;
 import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
