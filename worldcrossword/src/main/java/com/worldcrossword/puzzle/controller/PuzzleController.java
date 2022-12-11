@@ -18,12 +18,9 @@ public class PuzzleController {
 
     private final PuzzleService puzzleService;
 
-    @GetMapping("/get/{sessionName}")
-    public ResponseEntity<PuzzleRequest> getPuzzle(@PathVariable String sessionName) {
-        return new ResponseEntity<>(PuzzleRequest.builder()
-                .puzzle(puzzleService.getPuzzle(sessionName))
-                .user(puzzleService.getUsers(sessionName))
-                .build(), HttpStatus.OK);
+    @GetMapping("/{sessionName}")
+    public ResponseEntity<List<PuzzleEntity>> getPuzzle(@PathVariable String sessionName) {
+        return new ResponseEntity<>(puzzleService.getPuzzle(sessionName), HttpStatus.OK);
     }
 
     @GetMapping("/mean/{word}")
