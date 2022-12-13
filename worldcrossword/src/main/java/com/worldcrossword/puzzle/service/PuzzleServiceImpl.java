@@ -191,6 +191,9 @@ public class PuzzleServiceImpl implements PuzzleService {
             puzzle.successPuzzle();
             puzzleRepository.save(puzzle);
 
+            user.changeSolve(false, null);
+            userRepository.save(user);
+
             // 나 자신이 아니고, 현재 접속중인 유저 중 하나이면서, 퍼즐 세션이 일치하는 유저들에게 not_solving task로 풀이 끝났음을 알림
             // 본인에게도 정답임을 알림.
             for(int i = 0;i < PuzzleWebsocket.CLIENTS.size();i++) {
