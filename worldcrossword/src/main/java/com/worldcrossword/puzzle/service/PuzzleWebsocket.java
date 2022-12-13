@@ -51,14 +51,20 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
     }
 
     public static HashMap<String, Object> convertJsonToObject(String json) throws IOException {
+
         ObjectMapper objectMapper = new ObjectMapper();
         TypeReference<HashMap<String, Object>> typeReference = new TypeReference<HashMap<String, Object>>() {
         };
         return objectMapper.readValue(json, typeReference);
+
     }
 
+    /**********************************************************************************************/
+    /************                           웹소켓 코드                                **************/
+    /**********************************************************************************************/
+
     // 세션 관리
-    private final List<WebSocketSession> CLIENTS = new ArrayList<>();
+    static public final List<WebSocketSession> CLIENTS = new ArrayList<>();
 
     // 생성된 퍼즐 세션 체크용.
     private final PuzzleSessionRepository puzzleSessionRepository;
@@ -179,50 +185,20 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
 
         // 퍼즐 풀이 그만둘때 - 위와 나머지는 동일한데, success에 "true" 혹은 "false"를 보내 성공 여부 보내줌
         else if (parsed.get("task").equals("releasePuzzle")) {
-            UserEntity user = userRepository.findBySessionId(session.getId()).orElseThrow();
-            Long row = Long.parseLong((String) parsed.get("row"));
-            Long col = Long.parseLong((String) parsed.get("col"));
-            String direction = (String) parsed.get("direction");
-            String success = (String) parsed.get("success");
-            List<PuzzleEntity> puzzles = puzzleRepository.findAllBySessionName((String) parsed.get("sessionName"));
-
-            // 현재 그만두려는 퍼즐을 찾음.
-            PuzzleEntity puzzle = null;
-            for(PuzzleEntity p: puzzles) {
-                if(Objects.equals(direction, "ACROSS")) {
-                    if(p.getColpoint() <= col && p.getColpoint() + p.getEndpoint() > col && Objects.equals(p.getRowpoint(), row)) {
-                        puzzle = p;
-                        break;
-                    }
-                } else {
-                    if(p.getRowpoint() <= row && p.getRowpoint() + p.getEndpoint() > row && Objects.equals(p.getColpoint(), col)) {
-                        puzzle = p;
-                        break;
-                    }
-                }
-            }
-            if(puzzle == null) {
-                session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("false").message("찾는 퍼즐이 없습니다.").sessionName((String) parsed.get("sessionName")).build())));
-                return;
-            }
+            UserEntity user = userRepository.findBySessionId(session.getId()).get();
+            String word = (String) parsed.get("word");
 
             // 풀이 그만둠 저장.
             user.changeSolve(false, null);
             userRepository.save(user);
 
-            // 풀이 성공했을시 puzzle 성공 체크 및 저장.
-            if(success.equals("true")) {
-                puzzle.successPuzzle();
-                puzzleRepository.save(puzzle);
-            }
-
             // 퍼즐 그만두기를 요청한 사람에게 처리가 끝났음을 알림
-            session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("true").message("처리 완료").build())));
+            session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("true").message("퍼즐 나감").build())));
 
             for(WebSocketSession s: CLIENTS) {
                 // 나 자신이 아니고, 현재 접속중인 유저 중 하나이면서, 퍼즐 세션이 일치하는 유저들에게 not_solving task로 풀이 끝났음을 알림
                 if (!s.getId().equals(session.getId()) && userRepository.findBySessionId(s.getId()).isPresent() && userRepository.findBySessionId(s.getId()).get().getSessionName().equals((String) parsed.get("sessionName"))) {
-                    session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("not_solving").word(puzzle.getWord()).build())));
+                    session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("not_solving").word(word).build())));
                 }
             }
         }

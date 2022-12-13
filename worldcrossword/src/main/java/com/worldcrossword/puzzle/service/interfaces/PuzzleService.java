@@ -1,11 +1,13 @@
 package com.worldcrossword.puzzle.service.interfaces;
 
+import com.worldcrossword.puzzle.dto.PuzzleSolveDto;
 import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.entity.UserEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,5 +23,7 @@ public interface PuzzleService {
     DictionaryEntity getWord(String word);
 
     List<UserEntity> getUsers(String sessionName);
+
+    Boolean solvePuzzle(PuzzleSolveDto puzzleSolveDto, String sessionName) throws IOException;
 }
 
