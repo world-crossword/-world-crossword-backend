@@ -9,11 +9,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserInfo {
 
-    private String id;
+    private String iss;
+    private String azp;
+    private String aud;
+    private String sub;
     private String email;
-    private Boolean verified_email;
-    private String name;
-    private String given_name;
-    private String picture;
-    private String locale;
+    private Boolean email_verified;
+    private String at_hash;
+    private Long iat;
+    private Long exp;
+    private String alg;
+    private String kid;
+    private String typ;
 }

@@ -38,7 +38,7 @@ public class GoogleController {
         GoogleToken token = googleService.getToken(client_id, client_secret, code, redirect_uri);
         String accessToken = token.getAccess_token();
         String refreshToken = token.getRefresh_token();
-        String googleId = googleService.getGoogleId(accessToken);
+        String googleId = googleService.getGoogleId(token.getId_token());
 
         memberService.checkMember(googleId);
         googleService.cacheToken(accessToken, refreshToken, googleId);

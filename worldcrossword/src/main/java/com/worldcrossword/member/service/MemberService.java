@@ -18,6 +18,8 @@ public class MemberService {
     public void checkMember(String googleId) {
         if(!memberRepository.existsByGoogleId(googleId)) {
             memberRepository.save(Member.builder()
+                    .score(0L)
+                    .username("guest")
                     .googleId(googleId)
                     .role(Role.ROLE_USER)
                     .build());
