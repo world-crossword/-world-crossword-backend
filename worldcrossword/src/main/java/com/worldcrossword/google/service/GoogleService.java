@@ -50,16 +50,14 @@ public class GoogleService {
         return mapper.readValue(res.getBody(), GoogleToken.class);
     }
 
-    public String getGoogleId(String accessToken) throws JsonProcessingException {
+    public String getGoogleId(String idToken) throws JsonProcessingException {
         RestTemplate req = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + accessToken);
-        ResponseEntity<String> res = req.exchange("https://www.googleapis.com/userinfo/v2/me",
+        ResponseEntity<String> res = req.exchange("https://oauth2.googleapis.com/tokeninfo?id_token=" + idToken,
                 HttpMethod.GET,
-                new HttpEntity<>(headers),
+                new HttpEntity<>(null),
                 String.class);
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(res.getBody(), UserInfo.class).getId();
+        return mapper.readValue(res.getBody(), UserInfo.class).getEmail();
     }
 
     public void cacheToken(String accessToken, String refreshToken, String googleId) {
