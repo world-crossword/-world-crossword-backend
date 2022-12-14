@@ -36,6 +36,7 @@ public class UserEntity {
     @Column
     private String word;
 
+
     public void changeSession(String sessionName) {
         this.sessionName = sessionName;
         this.solving = false;
