@@ -60,46 +60,14 @@ public class GoogleService {
         return mapper.readValue(res.getBody(), UserInfo.class).getEmail();
     }
 
-    public void cacheToken(String accessToken, String refreshToken, String googleId) {
+    public void cacheToken(String accessToken, String googleId) {
         redis = redisTemplate.opsForValue();
-        String key_RT_AT = RT_AT_PREFIX + refreshToken;
-        redis.set(key_RT_AT, accessToken);
-        redisTemplate.expire(key_RT_AT, Duration.ofSeconds(TOKEN_CACHING_VALIDITY_DURATION));
-
+//        String key_RT_AT = RT_AT_PREFIX + refreshToken;
+//        redis.set(key_RT_AT, accessToken);
+//        redisTemplate.expire(key_RT_AT, Duration.ofSeconds(TOKEN_CACHING_VALIDITY_DURATION));
         String key_AT_GG = AT_GG_PREFIX + accessToken;
         redis.set(key_AT_GG, googleId);
         redisTemplate.expire(key_AT_GG, Duration.ofSeconds(TOKEN_CACHING_VALIDITY_DURATION));
-    }
-
-    public String getAccessTokenFromCache(String refreshToken) {
-        redis = redisTemplate.opsForValue();
-        String key = RT_AT_PREFIX + refreshToken;
-        String accessToken = (String) redis.get(key);
-        return accessToken;
-    }
-
-    public boolean validateToken(String refreshToken) {
-        redis = redisTemplate.opsForValue();
-        String key = RT_AT_PREFIX + refreshToken;
-        return redis.get(key) != null;
-    }
-
-    public String refreshAccessToken(String client_id, String client_secret, String refreshToken) throws JsonProcessingException {
-        RestTemplate req = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/x-www-form-urlencoded");
-        MultiValueMap<String, String> param = new LinkedMultiValueMap<>();
-        param.add("client_id", client_id);
-        param.add("client_secret", client_secret);
-        param.add("refresh_token", refreshToken);
-        param.add("grant_type", "refresh_token");
-        HttpEntity<MultiValueMap<String, String>> requestInfo = new HttpEntity<>(param, headers);
-        ResponseEntity<String> res = req.exchange("https://oauth2.googleapis.com/token",
-                HttpMethod.POST,
-                requestInfo,
-                String.class);
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(res.getBody(), GoogleToken.class).getAccess_token();
     }
 
     public Long findMemberIdByAccessToken(String token) {

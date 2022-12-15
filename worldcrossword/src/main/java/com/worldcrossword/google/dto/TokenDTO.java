@@ -8,5 +8,4 @@ import lombok.Data;
 public class TokenDTO {
 
     private String accountToken;
-    private String refreshToken;
 }

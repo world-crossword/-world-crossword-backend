@@ -21,6 +21,16 @@ public class CookieUtil {
                 .build();
     }
 
+    public Cookie createCookie1(String name, String value) {
+        Cookie cookie = new Cookie(name, value);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        cookie.setSecure(true);
+        cookie.setMaxAge(COOKIE_VALIDITY_DURATION);
+        cookie.setDomain("**");
+        return cookie;
+    }
+
     public ResponseCookie getCookie(HttpServletRequest req, String name) {
         Cookie[] cookies = req.getCookies();
         for(Cookie cookie : cookies) {
