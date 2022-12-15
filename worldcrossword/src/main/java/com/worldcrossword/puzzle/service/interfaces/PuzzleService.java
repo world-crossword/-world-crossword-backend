@@ -24,6 +24,6 @@ public interface PuzzleService {
 
     List<UserEntity> getUsers(String sessionName);
 
-    Boolean solvePuzzle(PuzzleSolveDto puzzleSolveDto, String sessionName) throws IOException;
+    Boolean solvePuzzle(PuzzleSolveDto puzzleSolveDto, Long memberId) throws IOException;
 }
 
