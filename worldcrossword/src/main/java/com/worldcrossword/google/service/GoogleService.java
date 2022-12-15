@@ -26,7 +26,7 @@ public class GoogleService {
     private final RedisTemplate<String, Object> redisTemplate;
     private final MemberRepository memberRepository;
     private ValueOperations<String, Object> redis;
-    private final String RT_AT_PREFIX = "RT:AT:";
+//    private final String RT_AT_PREFIX = "RT:AT:";
     private final String AT_GG_PREFIX = "AT:GG:";
     private final int TOKEN_CACHING_VALIDITY_DURATION = 3600 * 24 * 100;    // 100일동안 캐싱
 
