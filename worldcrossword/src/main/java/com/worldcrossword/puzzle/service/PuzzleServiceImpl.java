@@ -68,33 +68,41 @@ public class PuzzleServiceImpl implements PuzzleService {
     @Async
     public Boolean generatePuzzle(String puzzleName) {
         try {
+
+            ClassPathResource resource = new ClassPathResource("puzzleData/"+puzzleName+".csv");
+            int exitCode = 0;
             PuzzleSessionEntity puzzle = PuzzleSessionEntity.builder().sessionName(puzzleName).complete(false).build();
-            // String[] cmd = new String[] {"main.exe", puzzleName};
 
-            //리눅스 환경에서는 아래 코드로 변경 필요
-            String[] cmd = new String[] {"./main", puzzleName};
+            if(!resource.exists()) {
+                // String[] cmd = new String[] {"main.exe", puzzleName};
 
-            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-            processBuilder.redirectErrorStream(true);
-            processBuilder.directory(new File("puzzleGeneration"));
+                //리눅스 환경에서는 아래 코드로 변경 필요
+                String[] cmd = new String[] {"./main", puzzleName};
 
-            puzzleSessionRepository.save(puzzle);
-            Process process = processBuilder.start();
+                ProcessBuilder processBuilder = new ProcessBuilder(cmd);
+                processBuilder.redirectErrorStream(true);
+                processBuilder.directory(new File("puzzleGeneration"));
 
-            BufferedReader stdOut = new BufferedReader( new InputStreamReader(process.getInputStream()) );
-            String str;
-            while( (str = stdOut.readLine()) != null ) {
-                System.out.println(str);
+                puzzleSessionRepository.save(puzzle);
+                Process process = processBuilder.start();
+
+                BufferedReader stdOut = new BufferedReader( new InputStreamReader(process.getInputStream()) );
+                String str;
+                while( (str = stdOut.readLine()) != null ) {
+                    System.out.println(str);
+                }
+
+                exitCode = process.waitFor();
             }
 
-            int exitCode = process.waitFor();
-
             if(exitCode == 0) {
+
+                File csv = resource.getFile();
+                log.info("parsing");
+
                 puzzle.completeGenerate();
                 puzzleSessionRepository.save(puzzle);
                 // 퍼즐 세션 추가
-                ClassPathResource resource = new ClassPathResource("puzzleData/"+puzzleName+".csv");
-                File csv = resource.getFile();
                 String line = "";
 
                 try(BufferedReader br = new BufferedReader(new FileReader(csv))) {
