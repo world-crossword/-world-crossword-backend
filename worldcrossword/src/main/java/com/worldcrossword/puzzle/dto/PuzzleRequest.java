@@ -13,5 +13,5 @@ import java.util.List;
 @Builder
 public class PuzzleRequest {
     List<PuzzleEntity> puzzle;
-    List<UserEntity> user;
+//    List<UserEntity> user;
 }

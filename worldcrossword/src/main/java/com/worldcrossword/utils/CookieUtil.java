@@ -14,10 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class CookieUtil {
 
+<<<<<<< HEAD
     /**
      * 쿠키 유효 기간(default)
      */
     private final int COOKIE_VALIDATION_SECOND = 1000 * 60 * 60 * 48;
+=======
+    private final int COOKIE_VALIDATION_SECOND = 3600 * 24 * 100;
+>>>>>>> 762650f49c084a918894c2994d4fc5f25a199c7f
 
     /**
      * 서버 스펙의 브라우저 쿠키 생성
@@ -30,7 +34,11 @@ public class CookieUtil {
         return ResponseCookie.from(name, value)
                 .httpOnly(true)
                 .path("/")
+<<<<<<< HEAD
                 // .secure(false)
+=======
+                .secure(true)
+>>>>>>> 762650f49c084a918894c2994d4fc5f25a199c7f
                 .sameSite("None")
                 .maxAge(COOKIE_VALIDATION_SECOND)
                 .build();
