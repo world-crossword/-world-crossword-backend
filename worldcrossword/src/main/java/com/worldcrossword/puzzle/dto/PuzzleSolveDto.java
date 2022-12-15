@@ -1,16 +1,18 @@
 package com.worldcrossword.puzzle.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class PuzzleSolveDto {
-    private Long row;
-    private Long col;
-    private String direction;
+    private Long id;
+//    private Long row;
+//    private Long col;
+//    private String direction;
     private String word;
-    private String googleId;
+    private String sessionName;
+//    private String googleId;
 }
