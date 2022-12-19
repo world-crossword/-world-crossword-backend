@@ -25,7 +25,7 @@ public class RankingService {
     public void incrementScore(Long memberId) {
         ZSetOperations<String, Object> zSet = redisTemplate.opsForZSet();
         // 없다는 것은 처음 로그인한 유저라는 것
-        zSet.addIfAbsent(RankingKey, memberId + "L", 0);
+//        zSet.addIfAbsent(RankingKey, memberId, 0);
         zSet.incrementScore(RankingKey, memberId, 100);
 
         // 예외처리
