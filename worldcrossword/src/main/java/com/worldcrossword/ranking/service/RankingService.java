@@ -38,7 +38,7 @@ public class RankingService {
         Member me = memberService.findById(memberId);
         Long myRank = Optional.ofNullable(zSet.rank(RankingKey, memberId)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
         Double myScore = Optional.ofNullable(zSet.score(RankingKey, memberId)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
-        rankingDTO.setMine(new RankUser(myRank, me, myScore));
+        rankingDTO.setMine(new RankUser(myRank+1, me, myScore));
 
         Long size = Optional.ofNullable(zSet.size(RankingKey)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
         Set<ZSetOperations.TypedTuple<Object>> rankSet;
