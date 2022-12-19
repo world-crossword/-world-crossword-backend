@@ -12,4 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 public class RankingDTO {
     private List<RankUser> ranking = new ArrayList<>();
+    private RankUser mine;
 }

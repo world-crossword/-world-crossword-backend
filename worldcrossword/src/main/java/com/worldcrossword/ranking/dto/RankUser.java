@@ -10,18 +10,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RankUser {
 
-    private Integer rank;
+    private Long rank;
     private Ranker ranker;
     private Double score;
 
     @AllArgsConstructor
-	@Data
+    @Data
     private static class Ranker {
         private Long id;
         private String username;
     }
 
-    public RankUser(Integer rank, Member member, Double score) {
+    public RankUser(Long rank, Member member, Double score) {
         this.rank = rank;
         this.ranker = new Ranker(member.getId(), member.getUsername());
         this.score = score;

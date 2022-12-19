@@ -25,22 +25,28 @@ public class RankingService {
     public void incrementScore(Long memberId) {
         ZSetOperations<String, Object> zSet = redisTemplate.opsForZSet();
         // 없다는 것은 처음 로그인한 유저라는 것
-        zSet.addIfAbsent(RankingKey, memberId, 0);
+        zSet.addIfAbsent(RankingKey, memberId + "L", 0);
         zSet.incrementScore(RankingKey, memberId, 100);
 
         // 예외처리
     }
 
-    public RankingDTO getRanking() {
+    public RankingDTO getRanking(Long memberId) {
         ZSetOperations<String, Object> zSet = redisTemplate.opsForZSet();
+        RankingDTO rankingDTO = new RankingDTO();
+
+        Member me = memberService.findById(memberId);
+        Long myRank = Optional.ofNullable(zSet.rank(RankingKey, memberId)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
+        Double myScore = Optional.ofNullable(zSet.score(RankingKey, memberId)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
+        rankingDTO.setMine(new RankUser(myRank, me, myScore));
+
         Long size = Optional.ofNullable(zSet.size(RankingKey)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
         Set<ZSetOperations.TypedTuple<Object>> rankSet;
         if(size > 0 && size < 5) rankSet = Optional.ofNullable(zSet.reverseRangeWithScores(RankingKey, 0, size-1)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
         else rankSet= Optional.ofNullable(zSet.reverseRangeWithScores(RankingKey, 0, 4))
                 .orElseThrow(() -> new RuntimeException("redis 연결 실패"));
-        RankingDTO rankingDTO = new RankingDTO();
         if(rankSet != null) {
-            int i = 1;
+            long i = 1L;
             for (ZSetOperations.TypedTuple<Object> rank : rankSet) {
                 Member member = memberService.findById((Long.valueOf((Integer) rank.getValue())));
                 if(member != null) rankingDTO.getRanking().add(new RankUser(i++, member, rank.getScore()));

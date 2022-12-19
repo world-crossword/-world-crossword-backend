@@ -237,7 +237,7 @@ public class PuzzleServiceImpl implements PuzzleService {
                     new TextMessage(objToJson(
                         SessionRequestResDto.builder()
                                 .puzzle(new PuzzleDTO(puzzle))
-                                .ranking(rankingService.getRanking())
+                                .ranking(rankingService.getRanking(memberId))
                                 .stat(SessionRequestResDto.State.SOLVED)
                                 .build()
                     ))

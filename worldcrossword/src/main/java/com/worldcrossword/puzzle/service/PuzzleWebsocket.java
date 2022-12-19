@@ -109,7 +109,7 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
 
         // 게임 가져오기 - 없으면 생성됨.
         // 보낼때 task에 getmap, sessionName에 필요한 퍼즐 세션 이름 보내줘야함.
-        /*else if(parsed.get("task").equals("getmap")) {
+        if(parsed.get("task").equals("getmap")) {
             Optional<PuzzleSessionEntity> puzzle = puzzleSessionRepository.findBySessionName((String) parsed.get("sessionName"));
             if(puzzle.isEmpty()) {
                 // 퍼즐 생성 요청
@@ -125,7 +125,7 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
                 session.sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat(SessionRequestResDto.State.TRUE).message("퍼즐이 있습니다").build())));
                 // Front에 퍼즐을 보내줘야함.
             }
-        }*/
+        }
 
         // 유저 퍼즐 세션 변경 -> 기존 세션에서 변경시, 퍼즐 받아오는 REST API 실행 전에 보내줘야함 // task는 changePuzzle , sessionName은 퍼즐 이름.
         /*else if(parsed.get("task").equals("changePuzzle")) {
