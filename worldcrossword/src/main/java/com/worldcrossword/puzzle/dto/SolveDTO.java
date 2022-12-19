@@ -9,6 +9,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SolveDTO {
 
-    private Boolean solved;
+    private State solved;
 
+    private enum State {
+        RIGHT, WRONG, ALREADY
+    }
+
+    public SolveDTO(int solve) {
+        switch (solve) {
+            case -1 : this.solved = State.ALREADY; break;
+            case 0 : this.solved = State.WRONG; break;
+            case 1 : this.solved = State.RIGHT;
+        }
+    }
 }
