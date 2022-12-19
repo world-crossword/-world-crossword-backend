@@ -82,9 +82,6 @@ public class PuzzleServiceImpl implements PuzzleService {
             PuzzleSessionEntity puzzle = PuzzleSessionEntity.builder().sessionName(puzzleName).complete(false).build();
 
             if(!resource.exists()) {
-                // String[] cmd = new String[] {"main.exe", puzzleName};
-
-                //리눅스 환경에서는 아래 코드로 변경 필요
                 String[] cmd = new String[] {"./main", puzzleName};
 
                 ProcessBuilder processBuilder = new ProcessBuilder(cmd);
