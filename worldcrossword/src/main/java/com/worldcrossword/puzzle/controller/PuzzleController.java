@@ -34,7 +34,7 @@ public class PuzzleController {
             puzzleService.generatePuzzle(newSessionName);
             return new ResponseEntity<>(null, HttpStatus.OK);
         }
-        else if(puzzle.getComplete()) return new ResponseEntity<>(null, HttpStatus.OK);
+        else if(!puzzle.getComplete()) return new ResponseEntity<>(null, HttpStatus.OK);
         return new ResponseEntity<>(PuzzleRequest.builder()
                 .puzzle(PuzzleDTO.entityToList(puzzleService.getPuzzle(newSessionName)))
                 .build(), HttpStatus.OK);

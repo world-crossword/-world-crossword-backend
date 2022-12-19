@@ -134,6 +134,7 @@ public class PuzzleServiceImpl implements PuzzleService {
                                 .direction(lineArr[5])
                                 .completion(Long.parseLong(lineArr[6]))
                                 .sessionName(puzzleName)
+								.dictionary(dictionaryRepository.findByEnglish(lineArr[1]).get())
                                 .build();
                         log.info(singleword.toString());
                         puzzleRepository.save(singleword);
@@ -141,6 +142,8 @@ public class PuzzleServiceImpl implements PuzzleService {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+				
+				
                 return true;
             }
             else return false;

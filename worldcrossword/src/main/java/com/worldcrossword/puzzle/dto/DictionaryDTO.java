@@ -23,6 +23,6 @@ public class DictionaryDTO {
         this.mean = dictionary.getMean();
         this.part = dictionary.getPart();
         this.completion = puzzle.getCompletion();
-        this.solver_id = puzzle.getMember().getId();
+        if(completion == 1) this.solver_id = puzzle.getMember().getId();
     }
 }
