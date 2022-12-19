@@ -1,7 +1,5 @@
 package com.worldcrossword.puzzle.service;
 
-import com.worldcrossword.member.repository.MemberRepository;
-import com.worldcrossword.member.service.MemberService;
 import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
 import com.worldcrossword.puzzle.repository.PuzzleSessionRepository;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleSessionService;
@@ -11,21 +9,17 @@ import org.springframework.data.redis.core.SetOperations;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class PuzzleSessionServiceImpl implements PuzzleSessionService {
 
     private final PuzzleSessionRepository puzzleSessionRepository;
-    private final MemberRepository memberRepository;
 
     private final RedisTemplate<String, Object> redisTemplate;
-    private final String MemberToSessionPrefix = "MI:SN";
-    private final String MemberToScorePrefix = "MI:SC";
-    private final String SessionNameToSessionIdsPrefix = "SN:SI";
+    private final String MemberToSessionPrefix = "MI:SN:";
+    private final String SessionNameToSessionIdsPrefix = "SN:SI:";
     private final int USER_SESSION_DURATION = 3600 * 24 * 100;
-    private final int USER_SCORE_DURATION = 3600 * 24 * 100;
 
     @Override
     public PuzzleSessionEntity findBySessionName(String sessionName) {
@@ -34,7 +28,7 @@ public class PuzzleSessionServiceImpl implements PuzzleSessionService {
     }
 
     @Override
-    public void updateSession(Long memberId, String oldSessionName, String newSessionName) {
+    public void loadSession(Long memberId, String oldSessionName, String newSessionName) {
         String key = MemberToSessionPrefix + memberId;
         redisTemplate.opsForValue().set(key, newSessionName);
         redisTemplate.expire(key, Duration.ofSeconds(USER_SESSION_DURATION));
@@ -43,7 +37,7 @@ public class PuzzleSessionServiceImpl implements PuzzleSessionService {
 
         if(PuzzleWebsocket.sessionID == null) throw new RuntimeException("웹소켓 연결되지 않음");
         SetOperations<String, Object> redisSet = redisTemplate.opsForSet();
-        if(oldSessionName != null) {
+        if(!oldSessionName.equals("0")) {
             String keyOld = SessionNameToSessionIdsPrefix + oldSessionName;
             redisSet.remove(keyOld, PuzzleWebsocket.sessionID);
         }
@@ -53,18 +47,5 @@ public class PuzzleSessionServiceImpl implements PuzzleSessionService {
 
         // 예외처리
     }
-
-    @Override
-    public void updateScore(Long memberId) {
-        String key = MemberToScorePrefix + memberId;
-        Boolean connect = Optional.ofNullable(redisTemplate.hasKey(key)).orElseThrow(() -> new RuntimeException("Redis 연결 실패"));
-        if(!connect) {
-            redisTemplate.opsForValue().set(key, memberRepository.findScore(memberId));
-            redisTemplate.expire(key, Duration.ofSeconds(USER_SCORE_DURATION));
-        }
-
-        // 예외처리
-    }
-
 
 }

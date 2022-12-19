@@ -20,10 +20,11 @@ public interface PuzzleService {
 
     List<PuzzleEntity> getPuzzle(String puzzleName);
 
-    DictionaryEntity getWord(String word);
+    PuzzleEntity getWord(Long puzzleId);
 
     List<UserEntity> getUsers(String sessionName);
 
-    Boolean solvePuzzle(PuzzleSolveDto puzzleSolveDto, Long memberId) throws IOException;
+    // 맞췄으면 1, 틀렸으면 0, 이미 풀려있으면 -1
+    int solvePuzzle(PuzzleSolveDto puzzleSolveDto, Long memberId) throws IOException;
 }
 

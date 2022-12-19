@@ -81,6 +81,7 @@ public class PuzzleWebsocket extends TextWebSocketHandler {
         // 최초 등록 과정
         CLIENTS.add(session);
         sessionID = session.getId();
+		System.out.println(sessionID + "가 연결되었습니다.");
     }
 
     @Override

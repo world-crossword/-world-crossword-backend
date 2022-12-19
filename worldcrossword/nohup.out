@@ -1,0 +1,2694 @@
+Exception in thread "DisconnectableInputStream source reader" org.gradle.api.UncheckedIOException: java.io.IOException: 파일 디스크립터가 잘못됨
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:62)
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:41)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:127)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.io.IOException: 파일 디스크립터가 잘못됨
+	at java.base/java.io.FileInputStream.readBytes(Native Method)
+	at java.base/java.io.FileInputStream.read(FileInputStream.java:276)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:282)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:98)
+	... 1 more
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :bootRunMainClassName UP-TO-DATE
+
+> Task :bootRun
+07:48:28.474 [Thread-0] DEBUG org.springframework.boot.devtools.restart.classloader.RestartClassLoader - Created RestartClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2b5ade27
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.4)
+
+2022-12-19 07:48:29.669  INFO 132269 --- [  restartedMain] c.w.WorldcrosswordApplication            : Starting WorldcrosswordApplication using Java 17.0.5 on goorm with PID 132269 (/workspace/backend/worldcrossword/build/classes/java/main started by root in /workspace/backend/worldcrossword)
+2022-12-19 07:48:29.677  INFO 132269 --- [  restartedMain] c.w.WorldcrosswordApplication            : No active profile set, falling back to 1 default profile: "default"
+2022-12-19 07:48:30.007  INFO 132269 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-19 07:48:30.008  INFO 132269 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-19 07:48:32.836  INFO 132269 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 07:48:32.843  INFO 132269 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-19 07:48:33.468  INFO 132269 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 587 ms. Found 4 JPA repository interfaces.
+2022-12-19 07:48:33.526  INFO 132269 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 07:48:33.527  INFO 132269 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-12-19 07:48:33.621  INFO 132269 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.DictionaryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 07:48:33.623  INFO 132269 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 07:48:33.624  INFO 132269 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleSessionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 07:48:33.668  INFO 132269 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 07:48:33.669  INFO 132269 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73 ms. Found 0 Redis repository interfaces.
+2022-12-19 07:48:36.233  INFO 132269 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-19 07:48:36.280  INFO 132269 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-19 07:48:36.281  INFO 132269 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-12-19 07:48:36.585  INFO 132269 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-19 07:48:36.586  INFO 132269 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6578 ms
+2022-12-19 07:48:36.710  INFO 132269 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-19 07:48:38.325  INFO 132269 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-19 07:48:38.340  INFO 132269 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/wcw?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+2022-12-19 07:48:39.087  INFO 132269 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-19 07:48:39.399  INFO 132269 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
+2022-12-19 07:48:40.100  INFO 132269 --- [  restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-19 07:48:40.605  INFO 132269 --- [  restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-12-19 07:48:41.864  INFO 132269 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-19 07:48:41.874  INFO 132269 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-19 07:48:43.066  WARN 132269 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-19 07:48:43.633  INFO 132269 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-19 07:48:43.672  INFO 132269 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-19 07:48:43.690  INFO 132269 --- [  restartedMain] c.w.WorldcrosswordApplication            : Started WorldcrosswordApplication in 15.202 seconds (JVM running for 16.48)
+Hibernate: 
+    select
+        dictionary0_.id as id1_0_,
+        dictionary0_.english as english2_0_,
+        dictionary0_.mean as mean3_0_,
+        dictionary0_.part as part4_0_ 
+    from
+        dictionary dictionary0_
+2022-12-19 07:48:45.882  INFO 132269 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-19 07:48:45.882  INFO 132269 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-19 07:48:45.884  INFO 132269 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+95cb4741-b77a-b24e-bffe-f98913a255cb가 연결되었습니다.
+20e6190a-da86-b4ae-a795-09e0d76d6657가 연결되었습니다.
+28354d2a-5354-eb32-3188-2172df73cda4가 연결되었습니다.
+f516142c-a306-2281-85e7-70d8dcdd0039가 연결되었습니다.
+e1bbcbed-7318-ceef-bd70-e3f2dbfd53e1가 연결되었습니다.
+e331a3cb-9041-065b-9614-99ececcdb7c2가 연결되었습니다.
+6a156f2a-3639-f34c-64c6-21d108461101가 연결되었습니다.
+6bfbc62e-90d8-1385-46c6-32a52fac04a5가 연결되었습니다.
+bde8c657-7f61-4287-9bda-293ed14263d3가 연결되었습니다.
+a46aa01f-9aed-0056-b42c-06106ef95aa4가 연결되었습니다.
+aa24cc82-7549-6f1f-cabc-c5cf80035eb8가 연결되었습니다.
+b5e7654a-26c0-ac41-32a1-91439879b2f7가 연결되었습니다.
+56a64a6c-049b-8c36-cf84-128ac668f805가 연결되었습니다.
+5eda3095-b259-ac47-c718-ead93df4f6ce가 연결되었습니다.
+b72f69a3-5be6-663f-786d-e580376de703가 연결되었습니다.
+
+The message received from the daemon indicates that the daemon has disappeared.
+Build request sent: Build{id=9650c94a-81b1-4377-850b-194501b12477, currentDir=/workspace/backend/worldcrossword}
+Attempting to read last messages from the daemon log...
+Daemon pid: 130708
+  log file: /root/.gradle/daemon/7.5/daemon-130708.out.log
+----- Last  20 lines from daemon log file - daemon-130708.out.log -----
+    from
+        dictionary dictionary0_
+2022-12-19 07:48:45.882  INFO 132269 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-19 07:48:45.882  INFO 132269 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-19 07:48:45.884  INFO 132269 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+95cb4741-b77a-b24e-bffe-f98913a255cb가 연결되었습니다.
+20e6190a-da86-b4ae-a795-09e0d76d6657가 연결되었습니다.
+28354d2a-5354-eb32-3188-2172df73cda4가 연결되었습니다.
+f516142c-a306-2281-85e7-70d8dcdd0039가 연결되었습니다.
+e1bbcbed-7318-ceef-bd70-e3f2dbfd53e1가 연결되었습니다.
+e331a3cb-9041-065b-9614-99ececcdb7c2가 연결되었습니다.
+6a156f2a-3639-f34c-64c6-21d108461101가 연결되었습니다.
+6bfbc62e-90d8-1385-46c6-32a52fac04a5가 연결되었습니다.
+bde8c657-7f61-4287-9bda-293ed14263d3가 연결되었습니다.
+a46aa01f-9aed-0056-b42c-06106ef95aa4가 연결되었습니다.
+aa24cc82-7549-6f1f-cabc-c5cf80035eb8가 연결되었습니다.
+b5e7654a-26c0-ac41-32a1-91439879b2f7가 연결되었습니다.
+56a64a6c-049b-8c36-cf84-128ac668f805가 연결되었습니다.
+5eda3095-b259-ac47-c718-ead93df4f6ce가 연결되었습니다.
+b72f69a3-5be6-663f-786d-e580376de703가 연결되었습니다.
+----- End of the daemon log -----
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Gradle build daemon disappeared unexpectedly (it may have been killed or may have crashed)
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+Exception in thread "DisconnectableInputStream source reader" org.gradle.api.UncheckedIOException: java.io.IOException: 파일 디스크립터가 잘못됨
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:62)
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:41)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:127)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.io.IOException: 파일 디스크립터가 잘못됨
+	at java.base/java.io.FileInputStream.readBytes(Native Method)
+	at java.base/java.io.FileInputStream.read(FileInputStream.java:276)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:282)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:98)
+	... 1 more
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :bootRunMainClassName UP-TO-DATE
+
+> Task :bootRun
+07:59:13.187 [Thread-0] DEBUG org.springframework.boot.devtools.restart.classloader.RestartClassLoader - Created RestartClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2b5ade27
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.4)
+
+2022-12-19 07:59:13.707  INFO 135044 --- [  restartedMain] c.w.WorldcrosswordApplication            : Starting WorldcrosswordApplication using Java 17.0.5 on goorm with PID 135044 (/workspace/backend/worldcrossword/build/classes/java/main started by root in /workspace/backend/worldcrossword)
+2022-12-19 07:59:13.708  INFO 135044 --- [  restartedMain] c.w.WorldcrosswordApplication            : No active profile set, falling back to 1 default profile: "default"
+2022-12-19 07:59:13.805  INFO 135044 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-19 07:59:13.805  INFO 135044 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-19 07:59:14.709  INFO 135044 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 07:59:14.711  INFO 135044 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-19 07:59:14.923  INFO 135044 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 203 ms. Found 4 JPA repository interfaces.
+2022-12-19 07:59:14.941  INFO 135044 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 07:59:14.942  INFO 135044 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-12-19 07:59:14.962  INFO 135044 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.DictionaryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 07:59:14.963  INFO 135044 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 07:59:14.964  INFO 135044 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleSessionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 07:59:14.965  INFO 135044 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 07:59:14.965  INFO 135044 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2022-12-19 07:59:15.797  INFO 135044 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-19 07:59:15.808  INFO 135044 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-19 07:59:15.809  INFO 135044 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-12-19 07:59:15.897  INFO 135044 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-19 07:59:15.899  INFO 135044 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2092 ms
+2022-12-19 07:59:15.938  INFO 135044 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-19 07:59:16.311  INFO 135044 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-19 07:59:16.323  INFO 135044 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/wcw?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+2022-12-19 07:59:16.550  INFO 135044 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-19 07:59:16.629  INFO 135044 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
+2022-12-19 07:59:16.864  INFO 135044 --- [  restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-19 07:59:16.998  INFO 135044 --- [  restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-12-19 07:59:17.735  INFO 135044 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-19 07:59:17.744  INFO 135044 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-19 07:59:18.745  WARN 135044 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-19 07:59:19.212  INFO 135044 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-19 07:59:19.246  INFO 135044 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-19 07:59:19.259  INFO 135044 --- [  restartedMain] c.w.WorldcrosswordApplication            : Started WorldcrosswordApplication in 6.06 seconds (JVM running for 6.583)
+Hibernate: 
+    select
+        dictionary0_.id as id1_0_,
+        dictionary0_.english as english2_0_,
+        dictionary0_.mean as mean3_0_,
+        dictionary0_.part as part4_0_ 
+    from
+        dictionary dictionary0_
+2022-12-19 07:59:31.777  INFO 135044 --- [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-19 07:59:31.777  INFO 135044 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-19 07:59:31.779  INFO 135044 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+b36e456f-c6a5-d478-4b8a-2bc70c1a8d92가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Starting a Gradle Daemon, 2 busy and 1 incompatible and 4 stopped Daemons could not be reused, use --status for details
+Exception in thread "DisconnectableInputStream source reader" org.gradle.api.UncheckedIOException: java.io.IOException: 파일 디스크립터가 잘못됨
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:62)
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:41)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:127)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.io.IOException: 파일 디스크립터가 잘못됨
+	at java.base/java.io.FileInputStream.readBytes(Native Method)
+	at java.base/java.io.FileInputStream.read(FileInputStream.java:276)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:282)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:98)
+	... 1 more
+> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :bootRunMainClassName
+
+> Task :bootRun
+08:03:21.870 [Thread-0] DEBUG org.springframework.boot.devtools.restart.classloader.RestartClassLoader - Created RestartClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2b5ade27
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.4)
+
+2022-12-19 08:03:22.430  INFO 135469 --- [  restartedMain] c.w.WorldcrosswordApplication            : Starting WorldcrosswordApplication using Java 17.0.5 on goorm with PID 135469 (/workspace/backend/worldcrossword/build/classes/java/main started by root in /workspace/backend/worldcrossword)
+2022-12-19 08:03:22.433  INFO 135469 --- [  restartedMain] c.w.WorldcrosswordApplication            : No active profile set, falling back to 1 default profile: "default"
+2022-12-19 08:03:22.524  INFO 135469 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-19 08:03:22.524  INFO 135469 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-19 08:03:23.391  INFO 135469 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 08:03:23.392  INFO 135469 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-19 08:03:23.565  INFO 135469 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 163 ms. Found 4 JPA repository interfaces.
+2022-12-19 08:03:23.583  INFO 135469 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 08:03:23.585  INFO 135469 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-12-19 08:03:23.602  INFO 135469 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.DictionaryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:03:23.603  INFO 135469 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:03:23.604  INFO 135469 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleSessionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:03:23.605  INFO 135469 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:03:23.605  INFO 135469 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+2022-12-19 08:03:24.380  INFO 135469 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-19 08:03:24.396  INFO 135469 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-19 08:03:24.397  INFO 135469 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-12-19 08:03:24.490  INFO 135469 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-19 08:03:24.490  INFO 135469 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1965 ms
+2022-12-19 08:03:24.530  INFO 135469 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-19 08:03:24.924  INFO 135469 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-19 08:03:24.935  INFO 135469 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/wcw?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+2022-12-19 08:03:25.269  INFO 135469 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-19 08:03:25.369  INFO 135469 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
+2022-12-19 08:03:25.598  INFO 135469 --- [  restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-19 08:03:25.736  INFO 135469 --- [  restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-12-19 08:03:26.416  INFO 135469 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-19 08:03:26.425  INFO 135469 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-19 08:03:27.420  WARN 135469 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-19 08:03:27.864  INFO 135469 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-19 08:03:27.899  INFO 135469 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-19 08:03:27.913  INFO 135469 --- [  restartedMain] c.w.WorldcrosswordApplication            : Started WorldcrosswordApplication in 6.027 seconds (JVM running for 6.585)
+Hibernate: 
+    select
+        dictionary0_.id as id1_0_,
+        dictionary0_.english as english2_0_,
+        dictionary0_.mean as mean3_0_,
+        dictionary0_.part as part4_0_ 
+    from
+        dictionary dictionary0_
+2022-12-19 08:03:33.063  INFO 135469 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-19 08:03:33.064  INFO 135469 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-19 08:03:33.065  INFO 135469 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-12-19 08:03:33.555 ERROR 135469 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.RuntimeException: 웹소켓 연결되지 않음] with root cause
+
+java.lang.RuntimeException: 웹소켓 연결되지 않음
+	at com.worldcrossword.puzzle.service.PuzzleSessionServiceImpl.loadSession(PuzzleSessionServiceImpl.java:38) ~[main/:na]
+	at com.worldcrossword.puzzle.controller.PuzzleController.getPuzzle(PuzzleController.java:33) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.65.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.65.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2022-12-19 08:03:41.319 ERROR 135469 --- [nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.RuntimeException: 웹소켓 연결되지 않음] with root cause
+
+java.lang.RuntimeException: 웹소켓 연결되지 않음
+	at com.worldcrossword.puzzle.service.PuzzleSessionServiceImpl.loadSession(PuzzleSessionServiceImpl.java:38) ~[main/:na]
+	at com.worldcrossword.puzzle.controller.PuzzleController.getPuzzle(PuzzleController.java:33) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.65.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.65.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+240c8980-6f78-23ba-42ec-0f44a12d2fcc가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+2022-12-19 08:03:41.580 ERROR 135469 --- [nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.worldcrossword.member.entity.Member.getId()" because the return value of "com.worldcrossword.puzzle.entity.PuzzleEntity.getMember()" is null] with root cause
+
+java.lang.NullPointerException: Cannot invoke "com.worldcrossword.member.entity.Member.getId()" because the return value of "com.worldcrossword.puzzle.entity.PuzzleEntity.getMember()" is null
+	at com.worldcrossword.puzzle.dto.PuzzleDTO.<init>(PuzzleDTO.java:43) ~[main/:na]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[na:na]
+	at com.worldcrossword.puzzle.dto.PuzzleDTO.entityToList(PuzzleDTO.java:50) ~[main/:na]
+	at com.worldcrossword.puzzle.controller.PuzzleController.getPuzzle(PuzzleController.java:42) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.65.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.65.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+2022-12-19 08:03:41.691 ERROR 135469 --- [nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.worldcrossword.member.entity.Member.getId()" because the return value of "com.worldcrossword.puzzle.entity.PuzzleEntity.getMember()" is null] with root cause
+
+java.lang.NullPointerException: Cannot invoke "com.worldcrossword.member.entity.Member.getId()" because the return value of "com.worldcrossword.puzzle.entity.PuzzleEntity.getMember()" is null
+	at com.worldcrossword.puzzle.dto.PuzzleDTO.<init>(PuzzleDTO.java:43) ~[main/:na]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[na:na]
+	at com.worldcrossword.puzzle.dto.PuzzleDTO.entityToList(PuzzleDTO.java:50) ~[main/:na]
+	at com.worldcrossword.puzzle.controller.PuzzleController.getPuzzle(PuzzleController.java:42) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.65.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.65.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.65.jar:9.0.65]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+Starting a Gradle Daemon, 2 busy and 1 incompatible and 5 stopped Daemons could not be reused, use --status for details
+Exception in thread "DisconnectableInputStream source reader" org.gradle.api.UncheckedIOException: java.io.IOException: 파일 디스크립터가 잘못됨
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:62)
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:41)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:127)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.io.IOException: 파일 디스크립터가 잘못됨
+	at java.base/java.io.FileInputStream.readBytes(Native Method)
+	at java.base/java.io.FileInputStream.read(FileInputStream.java:276)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:282)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:98)
+	... 1 more
+> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :bootRunMainClassName
+
+> Task :bootRun
+08:06:35.481 [Thread-0] DEBUG org.springframework.boot.devtools.restart.classloader.RestartClassLoader - Created RestartClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2b5ade27
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.4)
+
+2022-12-19 08:06:36.035  INFO 135857 --- [  restartedMain] c.w.WorldcrosswordApplication            : Starting WorldcrosswordApplication using Java 17.0.5 on goorm with PID 135857 (/workspace/backend/worldcrossword/build/classes/java/main started by root in /workspace/backend/worldcrossword)
+2022-12-19 08:06:36.037  INFO 135857 --- [  restartedMain] c.w.WorldcrosswordApplication            : No active profile set, falling back to 1 default profile: "default"
+2022-12-19 08:06:36.130  INFO 135857 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-19 08:06:36.130  INFO 135857 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-19 08:06:37.147  INFO 135857 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 08:06:37.149  INFO 135857 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-19 08:06:37.329  INFO 135857 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 171 ms. Found 4 JPA repository interfaces.
+2022-12-19 08:06:37.347  INFO 135857 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 08:06:37.348  INFO 135857 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-12-19 08:06:37.365  INFO 135857 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.DictionaryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:06:37.366  INFO 135857 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:06:37.367  INFO 135857 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleSessionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:06:37.368  INFO 135857 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:06:37.368  INFO 135857 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+2022-12-19 08:06:38.077  INFO 135857 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-19 08:06:38.093  INFO 135857 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-19 08:06:38.094  INFO 135857 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-12-19 08:06:38.219  INFO 135857 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-19 08:06:38.220  INFO 135857 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2089 ms
+2022-12-19 08:06:38.266  INFO 135857 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-19 08:06:38.689  INFO 135857 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-19 08:06:38.702  INFO 135857 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/wcw?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+2022-12-19 08:06:38.900  INFO 135857 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-19 08:06:39.001  INFO 135857 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
+2022-12-19 08:06:39.220  INFO 135857 --- [  restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-19 08:06:39.379  INFO 135857 --- [  restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-12-19 08:06:40.095  INFO 135857 --- [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-19 08:06:40.105  INFO 135857 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-19 08:06:41.125  WARN 135857 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-19 08:06:41.557  INFO 135857 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-19 08:06:41.603  INFO 135857 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-19 08:06:41.622  INFO 135857 --- [  restartedMain] c.w.WorldcrosswordApplication            : Started WorldcrosswordApplication in 6.113 seconds (JVM running for 6.823)
+Hibernate: 
+    select
+        dictionary0_.id as id1_0_,
+        dictionary0_.english as english2_0_,
+        dictionary0_.mean as mean3_0_,
+        dictionary0_.part as part4_0_ 
+    from
+        dictionary dictionary0_
+2022-12-19 08:06:51.817  INFO 135857 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-19 08:06:51.818  INFO 135857 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-12-19 08:06:51.819  INFO 135857 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+bc6b77d8-5968-c723-cc13-b279f17b5522가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+0d8de749-30c8-e95e-296e-50ab50ea7ae9가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+74d3eff9-588d-601a-38db-49d998a1ec5a가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+8370a386-21b4-09e9-d9cf-84fdf9c3931a가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+3696bc68-e08e-77e3-3c32-6340dde544ed가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+8c08bc32-f1b9-9c71-93d7-e4bf954b4f79가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+58b4774a-fecb-744b-08a9-87dc34dd0f0c가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+585ffb9d-8046-5105-f1a3-d047bbf46428가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+86c53b97-858a-e6a0-4229-6807766a0e20가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+aeb74dd9-b4d5-ac2b-4350-67bfa483d784가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+400fd852-8e8b-e599-8230-1b365da71e7c가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+678b9035-f64e-d57b-0a57-5eaeb0fd28ba가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+59eb0007-f2af-c754-d4da-f76a0b5dee50가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+f0d9d274-b371-79b9-7dc4-7220df29ec61가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+7a7eb6e3-d2ac-d2a9-39bd-d7f2840c54da가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+ccc6e0ec-dc51-aa18-0739-deb459a1d586가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+9dbe5b98-10d0-e047-2690-c9c52f87903e가 연결되었습니다.
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Hibernate: 
+    select
+        puzzlesess0_.id as id1_3_,
+        puzzlesess0_.complete as complete2_3_,
+        puzzlesess0_.session_name as session_3_3_ 
+    from
+        puzzle_session_list puzzlesess0_ 
+    where
+        puzzlesess0_.session_name=?
+Hibernate: 
+    select
+        puzzleenti0_.id as id1_2_,
+        puzzleenti0_.colpoint as colpoint2_2_,
+        puzzleenti0_.completion as completi3_2_,
+        puzzleenti0_.direction as directio4_2_,
+        puzzleenti0_.endpoint as endpoint5_2_,
+        puzzleenti0_.member_id as member_i9_2_,
+        puzzleenti0_.rowpoint as rowpoint6_2_,
+        puzzleenti0_.session_name as session_7_2_,
+        puzzleenti0_.word as word8_2_ 
+    from
+        puzzle puzzleenti0_ 
+    where
+        puzzleenti0_.session_name=?
+Starting a Gradle Daemon, 2 busy and 1 incompatible and 6 stopped Daemons could not be reused, use --status for details
+Exception in thread "DisconnectableInputStream source reader" org.gradle.api.UncheckedIOException: java.io.IOException: 파일 디스크립터가 잘못됨
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:62)
+	at org.gradle.internal.UncheckedException.throwAsUncheckedException(UncheckedException.java:41)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:127)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.io.IOException: 파일 디스크립터가 잘못됨
+	at java.base/java.io.FileInputStream.readBytes(Native Method)
+	at java.base/java.io.FileInputStream.read(FileInputStream.java:276)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:282)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:343)
+	at org.gradle.util.internal.DisconnectableInputStream$1.run(DisconnectableInputStream.java:98)
+	... 1 more
+> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :bootRunMainClassName
+
+> Task :bootRun
+08:34:49.321 [Thread-0] DEBUG org.springframework.boot.devtools.restart.classloader.RestartClassLoader - Created RestartClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2b5ade27
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.4)
+
+2022-12-19 08:34:49.819  INFO 139468 --- [  restartedMain] c.w.WorldcrosswordApplication            : Starting WorldcrosswordApplication using Java 17.0.5 on goorm with PID 139468 (/workspace/backend/worldcrossword/build/classes/java/main started by root in /workspace/backend/worldcrossword)
+2022-12-19 08:34:49.820  INFO 139468 --- [  restartedMain] c.w.WorldcrosswordApplication            : No active profile set, falling back to 1 default profile: "default"
+2022-12-19 08:34:49.911  INFO 139468 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-19 08:34:49.912  INFO 139468 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-19 08:34:50.803  INFO 139468 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 08:34:50.805  INFO 139468 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-19 08:34:50.997  INFO 139468 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 183 ms. Found 4 JPA repository interfaces.
+2022-12-19 08:34:51.014  INFO 139468 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-12-19 08:34:51.015  INFO 139468 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-12-19 08:34:51.033  INFO 139468 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.DictionaryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:34:51.034  INFO 139468 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:34:51.035  INFO 139468 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.PuzzleSessionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:34:51.036  INFO 139468 --- [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.worldcrossword.puzzle.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-12-19 08:34:51.036  INFO 139468 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2022-12-19 08:34:51.830  INFO 139468 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-19 08:34:51.844  INFO 139468 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-19 08:34:51.844  INFO 139468 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-12-19 08:34:51.943  INFO 139468 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-19 08:34:51.943  INFO 139468 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2031 ms
+2022-12-19 08:34:51.996  INFO 139468 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-19 08:34:52.374  INFO 139468 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-19 08:34:52.386  INFO 139468 --- [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/wcw?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+2022-12-19 08:34:52.663  INFO 139468 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-19 08:34:52.723  INFO 139468 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.11.Final
+2022-12-19 08:34:52.944  INFO 139468 --- [  restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-19 08:34:53.066  INFO 139468 --- [  restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-12-19 08:34:53.810 ERROR 139468 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing column [dictionary_id] in table [puzzle]
+2022-12-19 08:34:53.811  WARN 139468 --- [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing column [dictionary_id] in table [puzzle]
+2022-12-19 08:34:53.813  INFO 139468 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-19 08:34:53.821  INFO 139468 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-19 08:34:53.823  INFO 139468 --- [  restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-12-19 08:34:53.843  INFO 139468 --- [  restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-12-19 08:34:53.872 ERROR 139468 --- [  restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing column [dictionary_id] in table [puzzle]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-5.3.23.jar:5.3.23]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908) ~[spring-context-5.3.23.jar:5.3.23]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.23.jar:5.3.23]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.4.jar:2.7.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-2.7.4.jar:2.7.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.4.jar:2.7.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) ~[spring-boot-2.7.4.jar:2.7.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.7.4.jar:2.7.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-2.7.4.jar:2.7.4]
+	at com.worldcrossword.WorldcrosswordApplication.main(WorldcrosswordApplication.java:22) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.7.4.jar:2.7.4]
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing column [dictionary_id] in table [puzzle]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421) ~[spring-orm-5.3.23.jar:5.3.23]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-5.3.23.jar:5.3.23]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) ~[spring-orm-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.23.jar:5.3.23]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.23.jar:5.3.23]
+	... 21 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing column [dictionary_id] in table [puzzle]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:144) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:42) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:76) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:204) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:85) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:335) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498) ~[hibernate-core-5.6.11.Final.jar:5.6.11.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58) ~[spring-orm-5.3.23.jar:5.3.23]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.23.jar:5.3.23]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.23.jar:5.3.23]
+	... 25 common frames omitted
+
+
+BUILD SUCCESSFUL in 22s
+4 actionable tasks: 3 executed, 1 up-to-date

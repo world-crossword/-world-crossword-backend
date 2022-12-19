@@ -44,8 +44,10 @@ public class GoogleController {
 
         ResponseCookie cookie = cookieUtil.createCookie("WCW_access", accessToken);
         res.addHeader("Set-Cookie", cookie.toString());
-        res.sendRedirect("http://localhost:3000");
+        // res.sendRedirect("http://project.nextkhoon.xyz:58387/");
+		res.sendRedirect("http://localhost:3000");
 
         return new ResponseEntity<>(new TokenDTO(accessToken), HttpStatus.OK);
     }
+	
 }

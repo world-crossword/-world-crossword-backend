@@ -1,8 +1,6 @@
 package com.worldcrossword.puzzle.controller;
 
-import com.worldcrossword.puzzle.dto.PuzzleRequest;
-import com.worldcrossword.puzzle.dto.PuzzleSolveDto;
-import com.worldcrossword.puzzle.dto.SolveDTO;
+import com.worldcrossword.puzzle.dto.*;
 import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
@@ -27,9 +25,9 @@ public class PuzzleController {
     public ResponseEntity<PuzzleRequest> getPuzzle(@PathVariable String oldSessionName,
                                                    @PathVariable String newSessionName,
                                                    HttpServletRequest req) {
-        Long memberId = (Long) req.getAttribute("memberId");
-        puzzleSessionService.updateSession(memberId, oldSessionName, newSessionName);
-        puzzleSessionService.updateScore(memberId);
+//        Long memberId = (Long) req.getAttribute("memberId");
+        Long memberId = 1L;
+        puzzleSessionService.loadSession(memberId, oldSessionName, newSessionName);
 
         PuzzleSessionEntity puzzle = puzzleSessionService.findBySessionName(newSessionName);
         if(puzzle == null) {
@@ -38,24 +36,21 @@ public class PuzzleController {
         }
         else if(puzzle.getComplete()) return new ResponseEntity<>(null, HttpStatus.OK);
         return new ResponseEntity<>(PuzzleRequest.builder()
-                .puzzle(puzzleService.getPuzzle(newSessionName))
+                .puzzle(PuzzleDTO.entityToList(puzzleService.getPuzzle(newSessionName)))
                 .build(), HttpStatus.OK);
     }
 
-    @GetMapping("/mean/{word}")
-    public ResponseEntity<DictionaryEntity> getWord(@PathVariable String word) {
-        try {
-            return new ResponseEntity<>(puzzleService.getWord(word), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @GetMapping("/mean/{id}")
+    public ResponseEntity<DictionaryDTO> getWord(@PathVariable String id) {
+        return new ResponseEntity<>(new DictionaryDTO(puzzleService.getWord(Long.parseLong(id))), HttpStatus.OK);
     }
 
     @PostMapping("")
     public ResponseEntity<SolveDTO> solveWord(@RequestBody PuzzleSolveDto puzzleSolveDto,
                                               HttpServletRequest req) throws IOException {
-        Long memberId = (Long) req.getAttribute("memberId");
-        Boolean solve = puzzleService.solvePuzzle(puzzleSolveDto, memberId);
+//        Long memberId = (Long) req.getAttribute("memberId");
+        Long memberId = 1L;
+        int solve = puzzleService.solvePuzzle(puzzleSolveDto, memberId);
         return new ResponseEntity<>(new SolveDTO(solve), HttpStatus.OK);
     }
 
