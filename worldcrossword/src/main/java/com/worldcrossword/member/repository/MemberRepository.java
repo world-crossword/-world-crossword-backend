@@ -2,7 +2,6 @@ package com.worldcrossword.member.repository;
 
 import com.worldcrossword.member.entity.Member;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -32,9 +31,7 @@ public class MemberRepository {
         return Optional.of(memberList.get(0));
     }
 
-    public Long findScore(Long memberId) {
-        return em.createQuery("select m.score from Member m where m.id = :memberId", Long.class)
-                .setParameter("memberId", memberId)
-                .getSingleResult();
+    public Optional<Member> findById(Long memberId) {
+        return Optional.ofNullable(em.find(Member.class, memberId));
     }
 }
