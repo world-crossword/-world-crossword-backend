@@ -36,7 +36,7 @@ public class RankingService {
         RankingDTO rankingDTO = new RankingDTO();
 
         Member me = memberService.findById(memberId);
-        Long myRank = Optional.ofNullable(zSet.rank(RankingKey, memberId)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
+        Long myRank = Optional.ofNullable(zSet.reverseRank(RankingKey, memberId)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
         Double myScore = Optional.ofNullable(zSet.score(RankingKey, memberId)).orElseThrow(() -> new RuntimeException("redis 연결 실패"));
         rankingDTO.setMine(new RankUser(myRank+1, me, myScore));
 
