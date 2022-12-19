@@ -6,38 +6,18 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * 서버 스펙의 브라우저 쿠키 생성/조회 보조 클래스
- *
- * @see ResponseCookie
- */
 @Component
 public class CookieUtil {
 
     private final int COOKIE_VALIDATION_SECOND = 3600 * 24 * 100;
 
-    /**
-     * 서버 스펙의 브라우저 쿠키 생성
-     *
-     * @param name  쿠키 이름
-     * @param value 쿠키 값
-     */
     public ResponseCookie createCookie(String name, String value) {
-				// return ResponseCookie.from(name, value)
-				// .httpOnly(true)
-				// // .path("/")
-				// .secure(false)
-				// .sameSite("strict")
-				// .domain("project.nextkhoon.xyz")
-				// .maxAge(COOKIE_VALIDATION_SECOND)
-				// .build();
-		return ResponseCookie.from(name, value)
-        .domain("project.nextkhoon.xyz")
-        .path("/")
-        .httpOnly(true)
-        .maxAge(COOKIE_VALIDATION_SECOND)
-        .build();
-
+        return ResponseCookie.from(name, value)
+                .domain("project.nextkhoon.xyz")
+                .path("/")
+                .httpOnly(true)
+                .maxAge(COOKIE_VALIDATION_SECOND)
+                .build();
     }
 
     public ResponseCookie getCookie(HttpServletRequest req, String name) {
