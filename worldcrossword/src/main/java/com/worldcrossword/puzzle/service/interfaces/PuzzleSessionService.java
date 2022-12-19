@@ -9,6 +9,5 @@ import java.util.Optional;
 public interface PuzzleSessionService {
 
     public PuzzleSessionEntity findBySessionName(String sessionName);
-    public void updateSession(Long memberId, String oldSessionName, String newSessionName);
-    public void updateScore(Long memberId);
+    public void loadSession(Long memberId, String oldSessionName, String newSessionName);
 }

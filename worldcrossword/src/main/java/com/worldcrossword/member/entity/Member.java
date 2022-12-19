@@ -17,11 +17,11 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
     @Column(name="score", nullable = false)
-    private Long score;
+    private Double score;
 
     @Builder
-    public Member(String username, String googleId, Role role, Long score) {
-        this.username = username;
+    public Member(String googleId, Role role, Double score) {
+        this.username = googleId.split("@")[0];
         this.googleId = googleId;
         this.role = role;
         this.score = score;

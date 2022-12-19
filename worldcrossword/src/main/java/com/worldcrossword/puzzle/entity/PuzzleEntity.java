@@ -1,5 +1,6 @@
 package com.worldcrossword.puzzle.entity;
 
+import com.worldcrossword.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;
@@ -35,10 +36,17 @@ public class PuzzleEntity {
     @Column
     private Long completion;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
+
     @Column
     private String sessionName;
 
-    public void successPuzzle() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    private DictionaryEntity dictionary;
+
+    public void successPuzzle(Member member) {
         this.completion = 1L;
+        this.member = member;
     }
 }

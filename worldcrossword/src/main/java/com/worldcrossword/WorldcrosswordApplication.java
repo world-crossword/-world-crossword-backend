@@ -3,28 +3,33 @@ package com.worldcrossword;
 import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleEntity;
 import com.worldcrossword.puzzle.repository.DictionaryRepository;
+import com.worldcrossword.puzzle.repository.PuzzleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
+import java.util.List;
 
 @SpringBootApplication
 @RequiredArgsConstructor
 public class WorldcrosswordApplication implements CommandLineRunner {
 
     private final DictionaryRepository dictionaryRepository;
+	private final PuzzleRepository puzzleRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(WorldcrosswordApplication.class, args);
     }
 
     @Override
+	@Transactional
     public void run(String... args) throws Exception {
-		
+
 		if(dictionaryRepository.findAll().size() == 0) {
 			        // csv 사전파일 가져오기.
 				ClassPathResource resource = new ClassPathResource("dictionary.csv");

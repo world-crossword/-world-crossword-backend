@@ -23,14 +23,21 @@ public class CookieUtil {
      * @param value 쿠키 값
      */
     public ResponseCookie createCookie(String name, String value) {
-		System.out.println(name);
-        return ResponseCookie.from(name, value)
-                .httpOnly(true)
-                .path("/")
-                // .secure(false)
-                .sameSite("None")
-                .maxAge(COOKIE_VALIDATION_SECOND)
-                .build();
+				// return ResponseCookie.from(name, value)
+				// .httpOnly(true)
+				// // .path("/")
+				// .secure(false)
+				// .sameSite("strict")
+				// .domain("project.nextkhoon.xyz")
+				// .maxAge(COOKIE_VALIDATION_SECOND)
+				// .build();
+		return ResponseCookie.from(name, value)
+        .domain("project.nextkhoon.xyz")
+        .path("/")
+        .httpOnly(true)
+        .maxAge(COOKIE_VALIDATION_SECOND)
+        .build();
+
     }
 
     public ResponseCookie getCookie(HttpServletRequest req, String name) {

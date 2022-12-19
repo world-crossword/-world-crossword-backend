@@ -18,11 +18,14 @@ public class MemberService {
     public void checkMember(String googleId) {
         if(!memberRepository.existsByGoogleId(googleId)) {
             memberRepository.save(Member.builder()
-                    .score(0L)
-                    .username("guest")
+                    .score((double) 0)
                     .googleId(googleId)
                     .role(Role.ROLE_USER)
                     .build());
         }
+    }
+
+    public Member findById(Long memberId) {
+        return memberRepository.findById(memberId).orElse(null);
     }
 }
