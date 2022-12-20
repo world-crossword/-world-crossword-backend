@@ -18,8 +18,7 @@ public class RankingController {
 
     @GetMapping("/ranking")
     public ResponseEntity<RankingDTO> getRanking(HttpServletRequest req) {
-//        Long memberId = (Long) req.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) req.getAttribute("memberId");
         return new ResponseEntity<>(rankingService.getRanking(memberId), HttpStatus.OK);
     }
 }

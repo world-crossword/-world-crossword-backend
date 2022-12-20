@@ -15,8 +15,7 @@ public class MemberController {
 
     @GetMapping("/member/me")
     public ResponseEntity<MeDTO> whoAmI(HttpServletRequest req) {
-        // Long memberId = (Long) req.getAttribute("memberId");
-		Long memberId = 1L;
+         Long memberId = (Long) req.getAttribute("memberId");
         return new ResponseEntity<>(new MeDTO(memberId), HttpStatus.OK);
     }
 }

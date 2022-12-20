@@ -25,8 +25,7 @@ public class PuzzleController {
     public ResponseEntity<PuzzleRequest> getPuzzle(@PathVariable String oldSessionName,
                                                    @PathVariable String newSessionName,
                                                    HttpServletRequest req) {
-//        Long memberId = (Long) req.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) req.getAttribute("memberId");
         puzzleSessionService.loadSession(memberId, oldSessionName, newSessionName);
 
         PuzzleSessionEntity puzzle = puzzleSessionService.findBySessionName(newSessionName);
@@ -48,8 +47,7 @@ public class PuzzleController {
     @PostMapping("")
     public ResponseEntity<SolveDTO> solveWord(@RequestBody PuzzleSolveDto puzzleSolveDto,
                                               HttpServletRequest req) throws IOException {
-//        Long memberId = (Long) req.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) req.getAttribute("memberId");
         int solve = puzzleService.solvePuzzle(puzzleSolveDto, memberId);
         return new ResponseEntity<>(new SolveDTO(solve), HttpStatus.OK);
     }
