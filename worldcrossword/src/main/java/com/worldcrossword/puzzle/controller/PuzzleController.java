@@ -5,6 +5,7 @@ import com.worldcrossword.puzzle.entity.DictionaryEntity;
 import com.worldcrossword.puzzle.entity.PuzzleSessionEntity;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleSessionService;
+import com.worldcrossword.ranking.service.RankingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class PuzzleController {
 
     private final PuzzleService puzzleService;
     private final PuzzleSessionService puzzleSessionService;
+    private final RankingService rankingService;
 
     @GetMapping("/{oldSessionName}/{newSessionName}")
     public ResponseEntity<PuzzleRequest> getPuzzle(@PathVariable String oldSessionName,
@@ -27,6 +29,7 @@ public class PuzzleController {
                                                    HttpServletRequest req) {
         Long memberId = (Long) req.getAttribute("memberId");
         puzzleSessionService.loadSession(memberId, oldSessionName, newSessionName);
+        rankingService.initScore(memberId);
 
         PuzzleSessionEntity puzzle = puzzleSessionService.findBySessionName(newSessionName);
         if(puzzle == null) {

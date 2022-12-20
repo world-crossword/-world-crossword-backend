@@ -226,7 +226,7 @@ public class PuzzleServiceImpl implements PuzzleService {
             Member member = memberRepository.findById(memberId)
                     .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
 
-            rankingService.incrementScore(memberId);
+            rankingService.incrementScore(memberId, 100);
             puzzle.successPuzzle(member);
 //            puzzleRepository.save(puzzle); // 엔티티 수정하면 따로 permit 할 필요 없이 스냅샷이랑 비교해서 수정사항 반영해주는걸로 알고 있습니다.
 

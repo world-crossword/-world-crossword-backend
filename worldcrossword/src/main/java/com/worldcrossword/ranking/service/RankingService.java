@@ -21,12 +21,15 @@ public class RankingService {
 
     private final MemberService memberService;
 
+    public void initScore(Long memberId) {
+        redisTemplate.opsForZSet().addIfAbsent(RankingKey, memberId, 0);
+    }
 
-    public void incrementScore(Long memberId) {
+    public void incrementScore(Long memberId, double score) {
         ZSetOperations<String, Object> zSet = redisTemplate.opsForZSet();
         // 없다는 것은 처음 로그인한 유저라는 것
 //        zSet.addIfAbsent(RankingKey, memberId, 0);
-        zSet.incrementScore(RankingKey, memberId, 100);
+        zSet.incrementScore(RankingKey, memberId, score);
 
         // 예외처리
     }
