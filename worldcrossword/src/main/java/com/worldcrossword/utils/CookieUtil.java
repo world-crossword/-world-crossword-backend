@@ -13,10 +13,9 @@ public class CookieUtil {
 
     public ResponseCookie createCookie(String name, String value) {
         return ResponseCookie.from(name, value)
-                .httpOnly(true)
+                .domain("project.nextkhoon.xyz")
                 .path("/")
-                .secure(true)
-                .sameSite("None")
+                .httpOnly(true)
                 .maxAge(COOKIE_VALIDATION_SECOND)
                 .build();
     }

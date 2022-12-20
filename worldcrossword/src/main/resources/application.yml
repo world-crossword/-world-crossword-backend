@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/wcw?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
-    username: abcd
-    password: Password!
+    url:
+    username:
+    password:
 
 
   jpa:
@@ -20,6 +20,6 @@ spring:
     port: 6379
 
 google:
-  client-id: 576349839964-rbdmc9a0tsofvih0j582oldrbkp6an52.apps.googleusercontent.com
-  client-secret: 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
-  redirect-uri: http://project.nextkhoon.xyz:58866/login/oauth2/code/google
+  client-id:
+  client-secret:
+  redirect-uri:

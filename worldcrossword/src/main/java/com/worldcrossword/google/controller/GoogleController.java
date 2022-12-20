@@ -13,7 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -43,8 +44,10 @@ public class GoogleController {
 
         ResponseCookie cookie = cookieUtil.createCookie("WCW_access", accessToken);
         res.addHeader("Set-Cookie", cookie.toString());
-        res.sendRedirect("http://localhost:3000");
+        res.sendRedirect("http://project.nextkhoon.xyz:58387/");
+		// res.sendRedirect("http://localhost:3000");
 
         return new ResponseEntity<>(new TokenDTO(accessToken), HttpStatus.OK);
     }
+	
 }

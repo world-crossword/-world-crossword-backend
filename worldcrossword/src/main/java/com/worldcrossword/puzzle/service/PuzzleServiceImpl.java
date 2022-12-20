@@ -3,7 +3,10 @@ package com.worldcrossword.puzzle.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.worldcrossword.member.entity.Member;
+import com.worldcrossword.member.repository.MemberRepository;
 import com.worldcrossword.member.service.MemberService;
+import com.worldcrossword.puzzle.dto.PuzzleDTO;
 import com.worldcrossword.puzzle.dto.PuzzleSolveDto;
 import com.worldcrossword.puzzle.dto.SessionRequestResDto;
 import com.worldcrossword.puzzle.entity.DictionaryEntity;
@@ -16,6 +19,8 @@ import com.worldcrossword.puzzle.repository.PuzzleRepository;
 import com.worldcrossword.puzzle.repository.PuzzleSessionRepository;
 import com.worldcrossword.puzzle.repository.UserRepository;
 import com.worldcrossword.puzzle.service.interfaces.PuzzleService;
+import com.worldcrossword.ranking.dto.RankingDTO;
+import com.worldcrossword.ranking.service.RankingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
@@ -23,6 +28,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -35,14 +41,15 @@ import java.util.*;
 @RequiredArgsConstructor
 @EnableAsync
 @Slf4j
+@Transactional
 public class PuzzleServiceImpl implements PuzzleService {
 
     private final ObjectMapper objectMapper;
 
     private final RedisTemplate<String, Object> redisTemplate;
-    private final String MemberToSessionPrefix = "MI:SN";
-    private final String MemberToScorePrefix = "MI:SC";
-    private final String SessionNameToSessionIds = "SN:SIs";
+    private final String MemberToSessionPrefix = "MI:SN:";
+    private final String RankingKey = "RANK:";
+    private final String SessionNameToSessionIds = "SN:SIs:";
     private final int USER_SESSION_DURATION = 3600 * 24 * 100;
     private final int USER_SCORE_DURATION = 3600 * 24 * 100;
 
@@ -71,38 +78,48 @@ public class PuzzleServiceImpl implements PuzzleService {
     private final DictionaryRepository dictionaryRepository;
     private final PuzzleRepository puzzleRepository;
     private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
+    private final RankingService rankingService;
 
     @Override
     @Async
     public Boolean generatePuzzle(String puzzleName) {
         try {
+
+            ClassPathResource resource = new ClassPathResource("puzzleData/"+puzzleName+".csv");
+            int exitCode = 0;
             PuzzleSessionEntity puzzle = PuzzleSessionEntity.builder().sessionName(puzzleName).complete(false).build();
-            // String[] cmd = new String[] {"main.exe", puzzleName};
 
-            //리눅스 환경에서는 아래 코드로 변경 필요
-            String[] cmd = new String[] {"./main", puzzleName};
+            if(!resource.exists()) {
+                // String[] cmd = new String[] {"main.exe", puzzleName};
 
-            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-            processBuilder.redirectErrorStream(true);
-            processBuilder.directory(new File("puzzleGeneration"));
+                //리눅스 환경에서는 아래 코드로 변경 필요
+                String[] cmd = new String[] {"./main", puzzleName};
 
-            puzzleSessionRepository.save(puzzle);
-            Process process = processBuilder.start();
+                ProcessBuilder processBuilder = new ProcessBuilder(cmd);
+                processBuilder.redirectErrorStream(true);
+                processBuilder.directory(new File("puzzleGeneration"));
 
-            BufferedReader stdOut = new BufferedReader( new InputStreamReader(process.getInputStream()) );
-            String str;
-            while( (str = stdOut.readLine()) != null ) {
-                System.out.println(str);
+                puzzleSessionRepository.save(puzzle);
+                Process process = processBuilder.start();
+
+                BufferedReader stdOut = new BufferedReader( new InputStreamReader(process.getInputStream()) );
+                String str;
+                while( (str = stdOut.readLine()) != null ) {
+                    System.out.println(str);
+                }
+
+                exitCode = process.waitFor();
             }
 
-            int exitCode = process.waitFor();
-
             if(exitCode == 0) {
+
+                File csv = resource.getFile();
+                log.info("parsing");
+
                 puzzle.completeGenerate();
                 puzzleSessionRepository.save(puzzle);
                 // 퍼즐 세션 추가
-                ClassPathResource resource = new ClassPathResource("puzzleData/"+puzzleName+".csv");
-                File csv = resource.getFile();
                 String line = "";
 
                 try(BufferedReader br = new BufferedReader(new FileReader(csv))) {
@@ -117,6 +134,7 @@ public class PuzzleServiceImpl implements PuzzleService {
                                 .direction(lineArr[5])
                                 .completion(Long.parseLong(lineArr[6]))
                                 .sessionName(puzzleName)
+								.dictionary(dictionaryRepository.findByEnglish(lineArr[1]).get())
                                 .build();
                         log.info(singleword.toString());
                         puzzleRepository.save(singleword);
@@ -124,6 +142,8 @@ public class PuzzleServiceImpl implements PuzzleService {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+				
+				
                 return true;
             }
             else return false;
@@ -142,12 +162,8 @@ public class PuzzleServiceImpl implements PuzzleService {
     }
 
     @Override
-    public DictionaryEntity getWord(String word) {
-        Optional<DictionaryEntity> ans = dictionaryRepository.findByEnglish(word);
-        if(ans.isEmpty()) {
-            throw new NoEntityException("해당하는 단어가 없습니다.");
-        }
-        return ans.get();
+    public PuzzleEntity getWord(Long puzzleId) {
+        return puzzleRepository.findById(puzzleId).orElseThrow(() -> new RuntimeException("퍼즐이 없습니다."));
     }
 
     @Override
@@ -160,7 +176,7 @@ public class PuzzleServiceImpl implements PuzzleService {
     }
 
     @Override
-    public Boolean solvePuzzle(PuzzleSolveDto puzzleSolveDto, Long memberId) throws IOException {
+    public int solvePuzzle(PuzzleSolveDto puzzleSolveDto, Long memberId) throws IOException {
         // 세션에 들어있는 퍼즐 전부 찾아옴.
         /*List<PuzzleEntity> puzzles = puzzleRepository.findAllBySessionName(sessionName);
         UserEntity user = userRepository.findByGoogleId(puzzleSolveDto.getGoogleId()).orElseThrow();
@@ -187,6 +203,7 @@ public class PuzzleServiceImpl implements PuzzleService {
 
         PuzzleEntity puzzle = puzzleRepository.findById(puzzleSolveDto.getId())
                 .orElseThrow(() -> new RuntimeException("퍼즐이 없습니다."));
+        if(puzzle.getCompletion() == 1L) return -1;
 
         // 퍼즐이 없으면 푸려고 시도한 사람에게 없다고 보냄.
         /*if(puzzle == null) {
@@ -199,23 +216,18 @@ public class PuzzleServiceImpl implements PuzzleService {
         }*/
 
         if(puzzle.getWord().equals(puzzleSolveDto.getWord())) {
-            String MI_SI_key = MemberToSessionPrefix + memberId;
-            String MI_SC_key = MemberToScorePrefix + memberId;
-            String sessionName = (String) Optional.ofNullable(redisTemplate.opsForValue().get(MI_SI_key))
-                            .orElseThrow(() -> new RuntimeException("세션이 없습니다."));
-            Long score = (Long) Optional.ofNullable(redisTemplate.opsForValue().get(MI_SC_key))
-                            .orElseThrow(() -> new RuntimeException("점수가 없습니다."));
-            redisTemplate.opsForValue().set(MI_SC_key, score + 100);
-            redisTemplate.expire(MI_SC_key, Duration.ofSeconds(USER_SCORE_DURATION));
-            Long updateScore = (Long) Optional.ofNullable(redisTemplate.opsForValue().get(MI_SC_key))
-                            .orElseThrow(() -> new RuntimeException("점수 업데이트 실패"));
-            if(updateScore != score + 100) throw new RuntimeException("점수 업데이트 실패");
+//            String MI_SI_key = MemberToSessionPrefix + memberId;
+//            String sessionName = (String) Optional.ofNullable(redisTemplate.opsForValue().get(MI_SI_key))
+//                            .orElseThrow(() -> new RuntimeException("세션이 없습니다."));
+//            String SN_SIs_key = SessionNameToSessionIds + sessionName;
+//            Set<Object> sessionIds = Optional.ofNullable(redisTemplate.opsForSet().members(SN_SIs_key))
+//                    .orElseThrow(() -> new RuntimeException("세션 id를 가져오는 데 실패했습니다."));
 
-            String SN_SIs_key = SessionNameToSessionIds + sessionName;
-            Set<Object> sessionIds = Optional.ofNullable(redisTemplate.opsForSet().members(SN_SIs_key))
-                    .orElseThrow(() -> new RuntimeException("세션 id를 가져오는 데 실패했습니다."));
+            Member member = memberRepository.findById(memberId)
+                    .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
 
-            puzzle.successPuzzle();
+            rankingService.incrementScore(memberId, 100);
+            puzzle.successPuzzle(member);
 //            puzzleRepository.save(puzzle); // 엔티티 수정하면 따로 permit 할 필요 없이 스냅샷이랑 비교해서 수정사항 반영해주는걸로 알고 있습니다.
 
 //            user.changeSolve(false, null);
@@ -232,17 +244,18 @@ public class PuzzleServiceImpl implements PuzzleService {
 //            }
 
             for(WebSocketSession user : PuzzleWebsocket.CLIENTS) {
-                if(sessionIds.contains(user.getId())) user.sendMessage(
-                        new TextMessage(objToJson(
-                                SessionRequestResDto.builder()
-                                        .puzzle(puzzle)
-                                        .stat(SessionRequestResDto.State.SOLVED)
-                                        .build()
-                        ))
+                user.sendMessage(
+                    new TextMessage(objToJson(
+                        SessionRequestResDto.builder()
+                                .puzzle(new PuzzleDTO(puzzle))
+                                .ranking(rankingService.getRanking(memberId))
+                                .stat(SessionRequestResDto.State.SOLVED)
+                                .build()
+                    ))
                 );
             }
 
-            return true;
+            return 1;
         }
 //        else {
 //            for(int i = 0;i < PuzzleWebsocket.CLIENTS.size();i++) {
@@ -252,7 +265,7 @@ public class PuzzleServiceImpl implements PuzzleService {
 //                    PuzzleWebsocket.CLIENTS.get(i).sendMessage(new TextMessage(objToJson(SessionRequestResDto.builder().stat("false_answer").word(puzzle.getWord()).build())));
 //                }
 //            }
-            return false;
+            return 0;
 //        }
     }
 
