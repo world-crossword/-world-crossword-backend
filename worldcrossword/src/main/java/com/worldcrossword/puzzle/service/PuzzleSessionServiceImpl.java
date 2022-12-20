@@ -29,6 +29,10 @@ public class PuzzleSessionServiceImpl implements PuzzleSessionService {
 
     @Override
     public void loadSession(Long memberId, String oldSessionName, String newSessionName) {
+
+        if(oldSessionName == null || newSessionName == null) throw new RuntimeException("필수 파라미터가 전달되지 않았습니다.");
+        if(newSessionName.equals("0")) throw new RuntimeException("sessionName이 잘못 전달되었습니다.");
+
         String key = MemberToSessionPrefix + memberId;
         redisTemplate.opsForValue().set(key, newSessionName);
         redisTemplate.expire(key, Duration.ofSeconds(USER_SESSION_DURATION));
