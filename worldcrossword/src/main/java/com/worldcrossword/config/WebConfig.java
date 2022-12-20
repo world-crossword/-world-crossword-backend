@@ -15,9 +15,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-          registry.addInterceptor(loginInterceptor)
-                  .excludePathPatterns("/login/oauth2/code/google")
-                  .excludePathPatterns("/error");
+        registry.addInterceptor(loginInterceptor)
+                .excludePathPatterns("/login/oauth2/code/google")
+                .excludePathPatterns("/error");
 
     }
 
@@ -25,7 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://project.nextkhoon.xyz:58387", "http://localhost:3000")
-                .allowedMethods("GET", "POST", "DELETE", "PUT")
+                .allowedMethods("GET", "POST", "OPTIONS")
                 .allowedHeaders("*")
                 .exposedHeaders("*")
                 .allowCredentials(true);

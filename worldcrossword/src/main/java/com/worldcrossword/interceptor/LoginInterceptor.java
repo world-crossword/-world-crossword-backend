@@ -3,6 +3,7 @@ package com.worldcrossword.interceptor;
 import com.worldcrossword.google.service.GoogleService;
 import com.worldcrossword.utils.CookieUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,6 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if(HttpMethod.OPTIONS.matches(request.getMethod())) return true;
         ResponseCookie cookie = cookieUtil.getCookie(request, "WCW_access");
         if(cookie == null) throw new RuntimeException("토큰이 없습니다.");
         String accessToken = cookie.getValue();
