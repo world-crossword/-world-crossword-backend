@@ -47,6 +47,7 @@ public class PuzzleController {
         return new ResponseEntity<>(new DictionaryDTO(puzzleService.getWord(Long.parseLong(id))), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://project.nextkhoon.xyz:58387", allowCredentials = "true")
     @PostMapping("")
     public ResponseEntity<SolveDTO> solveWord(@RequestBody PuzzleSolveDto puzzleSolveDto,
                                               HttpServletRequest req) throws IOException {
